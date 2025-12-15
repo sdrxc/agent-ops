@@ -1,0 +1,10 @@
+{
+        "userId": "bayer-user-01",
+        "userName": "Bayer User",
+        "userEmail": "testuser@bayer.com",
+        "userRole": "admin",
+        "sessionId": "sesssion-id-0070-24242-4234",
+        "orgId": "bayer-01",
+        "accessDetails":{
+        }
+}

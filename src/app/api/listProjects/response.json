@@ -1,0 +1,118 @@
+{
+    "status": 200,
+    "message": "Projects fetched successfully",
+    "data": {
+      "projects" : [
+        {
+          "projectID": "prj-001",
+          "projectName": "MR Co-pilot Dev",
+          "projectOwner": "bayer-user-01",
+          "projectStatus": "active",
+          "orgId": "bayer-001",
+          "Category": "Machine Learning",
+          "Tags": [
+            "AI",
+            "Deep Learning",
+            "NLP"
+          ],
+          "Description": "A research platform for experimenting with AI models and pipelines.",
+          "Creation": "2025-01-15T10:45:00Z",
+          "CreateBy": "bayer-user-01",
+          "LastUpdate": "2025-09-20T12:30:00Z",
+          "LastUpdateBy": "bayer-user-02",
+          "IsArchived": false,
+          "IsMemory": true,
+          "MemeorySchema": "fdfd-fgfdsgfgf-gfgfgfdg.rds",
+          "agentsCount": 1
+        },
+        {
+          "projectID": "prj-0232",
+          "projectName": "Data Explorer",
+          "projectOwner": "bayer-user-01",
+          "projectStatus": "active",
+          "orgId": "bayer-001",
+          "Category": "Web Development",
+          "Tags": [
+            "Next.js",
+            "Supabase",
+            "LLM"
+          ],
+          "Description": "A bookmark manager app with GPT-powered clustering and summarization.",
+          "Creation": "2025-02-01T09:20:00Z",
+          "CreateBy": "bayer-user-01",
+          "LastUpdate": "2025-09-21T15:10:00Z",
+          "LastUpdateBy": "bayer-user-01",
+          "IsArchived": false,
+          "IsMemory": true,
+          "MemeorySchema": "fdfd-fgfdsgfgf-gfgfgfdg.rds",
+          "agentsCount": 3
+        },
+        {
+          "projectID": "prj-0575",
+          "projectName": "SAM Connect",
+          "projectOwner": "bayer-user-01",
+          "projectStatus": "completed",
+          "orgId": "bayer-001",
+          "Category": "Finance",
+          "Tags": [
+            "Trading",
+            "HFT",
+            "Python"
+          ],
+          "Description": "A low-latency trading bot framework with real-time analytics.",
+          "Creation": "2025-03-10T11:15:00Z",
+          "CreateBy": "bayer-user-01",
+          "LastUpdate": "2025-09-22T18:40:00Z",
+          "LastUpdateBy": "bayer-user-03",
+          "IsArchived": false,
+          "IsMemory": true,
+          "MemeorySchema": "fdfd-fgfdsgfgf-gfgfgfdg.rds",
+          "agentsCount": 3
+        },
+        {
+          "projectID": "prj-076",
+          "projectName": "Brand Brief",
+          "projectOwner": "bayer-user-01",
+          "projectStatus": "active",
+          "orgId": "bayer-001",
+          "Category": "Data Engineering",
+          "Tags": [
+            "ETL",
+            "Airflow",
+            "Big Data"
+          ],
+          "Description": "Data ingestion and transformation pipeline for healthcare analytics.",
+          "Creation": "2025-04-05T14:00:00Z",
+          "CreateBy": "bayer-user-01",
+          "LastUpdate": "2025-09-23T09:50:00Z",
+          "LastUpdateBy": "bayer-user-03",
+          "IsArchived": false,
+          "IsMemory": true,
+          "MemeorySchema": "fdfd-fgfdsgfgf-gfgfgfdg.rds",
+          "agentsCount": 3
+        },
+        {
+          "projectID": "prj-097",
+          "projectName": "CIA Dev",
+          "projectOwner": "bayer-user-01",
+          "projectStatus": "onHold",
+          "orgId": "bayer-001",
+          "Category": "DevOps",
+          "Tags": [
+            "ChatOps",
+            "Automation",
+            "Slack"
+          ],
+          "Description": "An assistant for DevOps teams to automate workflows through chat.",
+          "Creation": "2025-05-18T08:30:00Z",
+          "CreateBy": "bayer-user-01",
+          "LastUpdate": "2025-09-24T11:20:00Z",
+          "LastUpdateBy": "bayer-user-03",
+          "IsArchived": false,
+          "IsMemory": false,
+          "MemeorySchema": "",
+          "agentsCount": 3
+        }
+      ]
+    }
+}

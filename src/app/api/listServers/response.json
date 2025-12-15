@@ -1,0 +1,25 @@
+{
+    "status": 200,
+    "message": "Servers fetched successfully",
+    "data": {
+        "servers": [
+          {
+            "serverID": "SERVER001",
+            "serverName": "Data_Analysis_Server"
+          },
+          {
+            "serverID": "SERVER002",
+            "serverName": "Image_Generation_Server"
+          },
+          {
+            "serverID": "SERVER003",
+            "serverName": "Realtime_Translation_Server"
+          },
+          {
+            "serverID": "SERVER004",
+            "serverName": "Calendar_Management_Server"
+          }
+        ]
+    }
+}
+

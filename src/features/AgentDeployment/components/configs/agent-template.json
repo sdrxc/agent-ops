@@ -1,0 +1,63 @@
+{
+  "name": "",
+  "description": "",
+  "version": "0.0.0",
+  "url": "http://localhost:8000/api/v1",
+  "protocol_version": "1.0",
+
+  "tools": [
+    {
+      "id": "tool-123",
+      "name": "",
+      "description": "",
+      "tags": ["abc", "def"],
+      "input_modes": ["text"],
+      "output_modes": ["json", "table"]
+    }
+  ],
+
+  "input_modes": ["text", "voice"],
+  "output_modes": ["json", "html"],
+  "default_input_modes": ["text"],
+  "default_output_modes": ["json"],
+
+  "preferred_transport": "HTTP+JSON",
+  "additional_interfaces": [
+    {
+      "name": "extended_api",
+      "version": "v2",
+      "endpoints": ["/custom-endpoint"]
+    }
+  ],
+
+  "capabilities": {},
+
+  "skills": [
+    {
+      "name": "",
+      "description": "",
+      "version": "0.0.0"
+    }
+  ],
+
+  "mcp_enabled": true,
+  "mcp_config": {
+    "host": "mcp-server.company.com",
+    "port": 0,
+    "api_key": "",
+    "protocol": "https",
+    "timeout": 30
+  },
+
+  "security": [
+    {
+      "policy_name": "",
+      "enforced": true,
+      "details": ""
+    }
+  ],
+
+  "supports_authenticated_extended_card": false,
+  "feedback_enabled": true,
+  "performance_score": 0.0
+}

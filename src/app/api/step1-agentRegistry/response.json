@@ -1,0 +1,7 @@
+{
+    "status": 200,
+    "message": "Agent registered successfully",
+    "data": {
+        "sequenceID": "FDFDFDFD-GFDGFG-GFGFGG"
+    }
+}

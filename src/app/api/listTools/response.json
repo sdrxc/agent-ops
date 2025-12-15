@@ -1,0 +1,32 @@
+{
+    "status": 200,
+    "message": "Tools fetched successfully",
+    "data": {
+        "tools": [
+            {
+              "toolID": "T001",
+              "toolName": "Snowflake MCP Connector"
+            },
+            {
+              "toolID": "T002",
+              "toolName": "Figma MCP Connector"
+            },
+            {
+              "toolID": "T003",
+              "toolName": "Github MCP Server"
+            },
+            {
+              "toolID": "T004",
+              "toolName": "ElasticSearch MCP"
+            },
+            {
+              "toolID": "T005",
+              "toolName": "Logfire MCP"
+            },
+            {
+              "toolID": "T006",
+              "toolName": "Codacy API"
+            }
+        ]
+    }
+}

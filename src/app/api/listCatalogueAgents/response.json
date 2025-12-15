@@ -1,0 +1,73 @@
+{
+    "status": 200,
+    "message": "Agents fetched successfully",
+    "data": {
+        "agents": [
+            {
+                "id": "agent-10052",
+                "name": "Authoring agent",
+                "description": "Authoring agent",
+                "status": "active",
+                "version": "1.0.0",
+                "model": null,
+                "tags": [],
+                "lastactivity": "2025-11-05T06:21:09.149410",
+                "lastActivity": "14 hours ago",
+                "agentAPI": "",
+                "agentdeploymenttype": "registered"
+            },
+            {
+                "id": "agent-10053",
+                "name": "Validator agent",
+                "description": "Validator agent",
+                "status": "inactive",
+                "version": "1.0.0",
+                "model": null,
+                "tags": [],
+                "lastactivity": "2025-11-05T06:50:07.843451",
+                "lastActivity": "14 hours ago",
+                "agentAPI": "",
+                "agentdeploymenttype": "registered"
+            },
+            {
+                "id": "agent-10054",
+                "name": "Clarification Agent",
+                "description": "Clarification Agent",
+                "status": "active",
+                "version": "1.0.0",
+                "model": null,
+                "tags": [],
+                "lastactivity": "2025-11-05T06:59:02.874989",
+                "lastActivity": "13 hours ago",
+                "agentAPI": "http://k8s-project1-project1-1d8c4ed009-587900353.us-east-1.elb.amazonaws.com/agent-10054/",
+                "agentdeploymenttype": "deployed"
+            },
+                        {
+                "id": "agent-10065",
+                "name": "Orchestractor agent",
+                "description": "Orchestractor agent",
+                "status": "active",
+                "version": "1.0.0",
+                "model": null,
+                "tags": [],
+                "lastactivity": "2025-11-05T06:21:09.149410",
+                "lastActivity": "14 hours ago",
+                "agentAPI": "",
+                "agentdeploymenttype": "registered"
+            },
+                        {
+                "id": "agent-10043",
+                "name": "Guardrails agent",
+                "description": "Guardrails agent",
+                "status": "active",
+                "version": "1.0.0",
+                "model": null,
+                "tags": [],
+                "lastactivity": "2025-11-05T06:21:09.149410",
+                "lastActivity": "14 hours ago",
+                "agentAPI": "http://k8s-project1-project1-1d8c4ed009-587900353.us-east-1.elb.amazonaws.com/agent-10054/",
+                "agentdeploymenttype": "deployed"
+            }
+        ]
+    }
+}

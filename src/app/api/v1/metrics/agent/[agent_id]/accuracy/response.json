@@ -1,0 +1,23 @@
+{
+  "status": "success",
+  "project_id": null,
+  "project_name": null,
+  "agent_id": null,
+  "agent_name": null,
+  "data": {
+    "total_evaluations": 150,
+    "average_score": 0.3,
+    "score_distribution": {
+      "0": 135,
+      "1": 15
+    },
+    "by_score_name": [
+      {
+        "score_name": "LLM Evaluation",
+        "average_score": 0.1,
+        "total_count": 150,
+        "data_type": "NUMERIC"
+      }
+    ]
+  }
+}

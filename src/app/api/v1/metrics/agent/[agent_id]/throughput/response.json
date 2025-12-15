@@ -1,0 +1,37 @@
+{
+  "status": "success",
+  "project_id": "prj-1030",
+  "project_name": "Project01",
+  "agent_id": "10048",
+  "agent_name": "Testingall",
+  "data": {
+    "overall": {
+      "avg_cost_per_request": 0.000032,
+      "avg_tokens_per_request": 12.75,
+      "cost_per_1000_tokens": 0.0025,
+      "total_cost": 0.000128,
+      "total_tokens": 51,
+      "total_requests": 4
+    },
+    "by_model": [
+      {
+        "model": "gpt-4o",
+        "avg_cost_per_request": 0.000064,
+        "avg_tokens_per_request": 25.5,
+        "cost_per_1000_tokens": 0.0025,
+        "total_cost": 0.000128,
+        "total_tokens": 51,
+        "total_requests": 2
+      },
+      {
+        "model": "unknown",
+        "avg_cost_per_request": 0,
+        "avg_tokens_per_request": 0,
+        "cost_per_1000_tokens": 0,
+        "total_cost": 0,
+        "total_tokens": 0,
+        "total_requests": 2
+      }
+    ]
+  }
+}

@@ -1,0 +1,24 @@
+{
+    "status": 200,
+    "message": "Project details fetched successfully",
+    "data": {
+       "project": {
+            "projectID": "prj-001",
+            "projectName": "PMR Copilot Dev",
+            "projectOwner": "501",
+            "projectStatus": "active",
+            "orgId": "101",
+            "Category": "Machine Learning",
+            "Tags": ["AI", "Deep Learning", "NLP"],
+            "Description": "A research platform for experimenting with AI models and pipelines.",
+            "Creation": "2025-01-15T10:45:00Z",
+            "CreateBy": "501",
+            "LastUpdate": "2025-09-20T12:30:00Z",
+            "LastUpdateBy": "501",
+            "IsArchived": false,
+            "IsMemory": true,
+            "MemeorySchema": "fdfd-fgfdsgfgf-gfgfgfdg.rds",
+            "agentsCount": 2
+        }
+    }
+}

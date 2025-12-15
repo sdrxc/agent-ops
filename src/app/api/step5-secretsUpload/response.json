@@ -1,0 +1,9 @@
+{
+    "status": 200,
+    "message": "Secrets file uploaded to S3",
+    "data": {
+        "sequenceID": "FDFDFDFD-GFDGFG-GFGFGG",
+        "count": 1,
+        "s3_uri": "s3://bayer-agentops/secrets/user=501/project=1065/agent=3055/sequence=1065-2025-10-17T06:01:28.341Z-5cd92783-5ec4-49b8-be63-04c2bf544d22/secrets.json"
+    }
+}

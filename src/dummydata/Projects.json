@@ -1,0 +1,577 @@
+[
+  {
+    "projectId": "prj-001",
+    "agents": [
+      {
+        "id": "1",
+        "name": "Customer Support Bot",
+        "description": "Intelligent customer service assistant that handles common inquiries and escalates complex issues to human agents.",
+        "status": "active",
+        "version": "v2.1.3",
+        "model": "GPT-4",
+        "lastActivity": "2 minutes ago",
+        "performance": {
+          "successRate": 94.5,
+          "responseTime": 150,
+          "uptime": 99.8,
+          "errorRate": 2.1
+        },
+        "sessions": {
+          "total": 15420,
+          "costPerSession": 0.045
+        },
+        "tokens": {
+          "input": 1250000,
+          "output": 890000,
+          "total": 2140000
+        },
+        "tags": ["Customer Service", "NLP", "Support"]
+      }
+    ]
+  },
+  {
+    "projectId": "prj-0232",
+    "agents": [
+      {
+        "id": "1",
+        "name": "Fraud Detection Agent",
+        "description": "Analyzes transactions in real time to identify and flag potential fraud.",
+        "status": "active",
+        "version": "v1.2.0",
+        "model": "Custom ML",
+        "lastActivity": "10 minutes ago",
+        "performance": {
+          "successRate": 95.0,
+          "responseTime": 100,
+          "uptime": 99.9,
+          "errorRate": 1.5
+        },
+        "sessions": {
+          "total": 20000,
+          "costPerSession": 0.03
+        },
+        "tokens": {
+          "input": 1500000,
+          "output": 500000,
+          "total": 2000000
+        },
+        "tags": ["Fraud Detection", "Security", "ML"]
+      },
+      {
+        "id": "2",
+        "name": "Content Generator",
+        "description": "Creative AI that generates high-quality marketing content, blog posts, and social media content.",
+        "status": "active",
+        "version": "v1.8.2",
+        "model": "GPT-4",
+        "lastActivity": "5 minutes ago",
+        "performance": {
+          "successRate": 91.2,
+          "responseTime": 200,
+          "uptime": 99.9,
+          "errorRate": 3.4
+        },
+        "sessions": {
+          "total": 8750,
+          "costPerSession": 0.067
+        },
+        "tokens": {
+          "input": 980000,
+          "output": 1340000,
+          "total": 2320000
+        },
+        "tags": ["Content", "Marketing", "Creative"]
+      },
+      {
+        "id": "3",
+        "name": "Code Review Assistant",
+        "description": "Automated code review agent that analyzes pull requests and provides suggestions for improvements.",
+        "status": "training",
+        "version": "v0.9.1-beta",
+        "model": "CodeLlama",
+        "lastActivity": "30 minutes ago",
+        "performance": {
+          "successRate": 88.7,
+          "responseTime": 300,
+          "uptime": 98.5,
+          "errorRate": 5.2
+        },
+        "sessions": {
+          "total": 3420,
+          "costPerSession": 0.032
+        },
+        "tokens": {
+          "input": 2100000,
+          "output": 780000,
+          "total": 2880000
+        },
+        "tags": ["Development", "Code Review", "Quality"]
+      }
+    ]
+  },
+  {
+    "projectId": "prj-0575",
+    "agents": [
+      {
+        "id": "1",
+        "name": "Customer Support Bot",
+        "description": "Intelligent customer service assistant that handles common inquiries and escalates complex issues to human agents.",
+        "status": "active",
+        "version": "v2.1.3",
+        "model": "GPT-4",
+        "lastActivity": "2 minutes ago",
+        "performance": {
+          "successRate": 94.5,
+          "responseTime": 150,
+          "uptime": 99.8,
+          "errorRate": 2.1
+        },
+        "sessions": {
+          "total": 15420,
+          "costPerSession": 0.045
+        },
+        "tokens": {
+          "input": 1250000,
+          "output": 890000,
+          "total": 2140000
+        },
+        "tags": ["Customer Service", "NLP", "Support"]
+      },
+      {
+        "id": "2",
+        "name": "Content Generator",
+        "description": "Creative AI that generates high-quality marketing content, blog posts, and social media content.",
+        "status": "active",
+        "version": "v1.8.2",
+        "model": "GPT-4",
+        "lastActivity": "5 minutes ago",
+        "performance": {
+          "successRate": 91.2,
+          "responseTime": 200,
+          "uptime": 99.9,
+          "errorRate": 3.4
+        },
+        "sessions": {
+          "total": 8750,
+          "costPerSession": 0.067
+        },
+        "tokens": {
+          "input": 980000,
+          "output": 1340000,
+          "total": 2320000
+        },
+        "tags": ["Content", "Marketing", "Creative"]
+      },
+      {
+        "id": "3",
+        "name": "Code Review Assistant",
+        "description": "Automated code review agent that analyzes pull requests and provides suggestions for improvements.",
+        "status": "training",
+        "version": "v0.9.1-beta",
+        "model": "CodeLlama",
+        "lastActivity": "30 minutes ago",
+        "performance": {
+          "successRate": 88.7,
+          "responseTime": 300,
+          "uptime": 98.5,
+          "errorRate": 5.2
+        },
+        "sessions": {
+          "total": 3420,
+          "costPerSession": 0.032
+        },
+        "tokens": {
+          "input": 2100000,
+          "output": 780000,
+          "total": 2880000
+        },
+        "tags": ["Development", "Code Review", "Quality"]
+      },
+      {
+        "id": "4",
+        "name": "Data Analyst",
+        "description": "Advanced analytics agent that processes large datasets and generates insights and reports.",
+        "status": "active",
+        "version": "v3.0.1",
+        "model": "GPT-4",
+        "lastActivity": "1 hour ago",
+        "performance": {
+          "successRate": 96.1,
+          "responseTime": 120,
+          "uptime": 99.7,
+          "errorRate": 1.8
+        },
+        "sessions": {
+          "total": 22800,
+          "costPerSession": 0.089
+        },
+        "tokens": {
+          "input": 3200000,
+          "output": 1800000,
+          "total": 5000000
+        },
+        "tags": ["Analytics", "Data Science", "Reports"]
+      },
+      {
+        "id": "5",
+        "name": "Translation Service",
+        "description": "Multi-language translation agent supporting 50+ languages with context-aware translations.",
+        "status": "error",
+        "version": "v2.3.0",
+        "model": "mT5",
+        "lastActivity": "2 hours ago",
+        "performance": {
+          "successRate": 89.3,
+          "responseTime": 180,
+          "uptime": 97.2,
+          "errorRate": 8.7
+        },
+        "sessions": {
+          "total": 12300,
+          "costPerSession": 0.052
+        },
+        "tokens": {
+          "input": 1850000,
+          "output": 1650000,
+          "total": 3500000
+        },
+        "tags": ["Translation", "Multilingual", "Communication"]
+      },
+      {
+        "id": "6",
+        "name": "Sales Assistant",
+        "description": "AI-powered sales agent that qualifies leads, schedules meetings, and follows up with prospects.",
+        "status": "testing",
+        "version": "v1.5.4",
+        "model": "GPT-4",
+        "lastActivity": "15 minutes ago",
+        "performance": {
+          "successRate": 92.8,
+          "responseTime": 160,
+          "uptime": 99.1,
+          "errorRate": 2.9
+        },
+        "sessions": {
+          "total": 5680,
+          "costPerSession": 0.073
+        },
+        "tokens": {
+          "input": 950000,
+          "output": 1150000,
+          "total": 2100000
+        },
+        "tags": ["Sales", "Lead Generation", "CRM"]
+      },
+      {
+        "id": "7",
+        "name": "Campaign Tracker",
+        "description": "Monitors and analyzes marketing campaign performance metrics in real time.",
+        "status": "active",
+        "version": "v2.0.0",
+        "model": "GPT-4",
+        "lastActivity": "20 minutes ago",
+        "performance": {
+          "successRate": 93.5,
+          "responseTime": 140,
+          "uptime": 99.8,
+          "errorRate": 2.0
+        },
+        "sessions": {
+          "total": 18000,
+          "costPerSession": 0.06
+        },
+        "tokens": {
+          "input": 2000000,
+          "output": 1200000,
+          "total": 3200000
+        },
+        "tags": ["Analytics", "Marketing", "Performance"]
+      },
+      {
+        "id": "8",
+        "name": "Ad Optimizer",
+        "description": "Optimizes ad placements and budgets based on real-time campaign data.",
+        "status": "active",
+        "version": "v1.9.0",
+        "model": "Custom ML",
+        "lastActivity": "25 minutes ago",
+        "performance": {
+          "successRate": 94.0,
+          "responseTime": 130,
+          "uptime": 99.6,
+          "errorRate": 2.5
+        },
+        "sessions": {
+          "total": 15000,
+          "costPerSession": 0.055
+        },
+        "tokens": {
+          "input": 1700000,
+          "output": 1100000,
+          "total": 2800000
+        },
+        "tags": ["Ads", "Optimization", "Marketing"]
+      }
+    ]
+  },
+  {
+    "projectId": "prj-076",
+    "agents": [
+      {
+        "id": "1",
+        "name": "Medical Record Parser",
+        "description": "Extracts and structures insights from unstructured medical records.",
+        "status": "active",
+        "version": "v2.2.0",
+        "model": "BioBERT",
+        "lastActivity": "10 minutes ago",
+        "performance": {
+          "successRate": 95.5,
+          "responseTime": 140,
+          "uptime": 99.7,
+          "errorRate": 1.9
+        },
+        "sessions": {
+          "total": 17500,
+          "costPerSession": 0.05
+        },
+        "tokens": {
+          "input": 1900000,
+          "output": 1300000,
+          "total": 3200000
+        },
+        "tags": ["NLP", "Healthcare", "Diagnostics"]
+      },
+      {
+        "id": "2",
+        "name": "Content Generator",
+        "description": "Creative AI that generates high-quality marketing content, blog posts, and social media content.",
+        "status": "active",
+        "version": "v1.8.2",
+        "model": "GPT-4",
+        "lastActivity": "5 minutes ago",
+        "performance": {
+          "successRate": 91.2,
+          "responseTime": 200,
+          "uptime": 99.9,
+          "errorRate": 3.4
+        },
+        "sessions": {
+          "total": 8750,
+          "costPerSession": 0.067
+        },
+        "tokens": {
+          "input": 980000,
+          "output": 1340000,
+          "total": 2320000
+        },
+        "tags": ["Content", "Marketing", "Creative"]
+      },
+      {
+        "id": "3",
+        "name": "Code Review Assistant",
+        "description": "Automated code review agent that analyzes pull requests and provides suggestions for improvements.",
+        "status": "training",
+        "version": "v0.9.1-beta",
+        "model": "CodeLlama",
+        "lastActivity": "30 minutes ago",
+        "performance": {
+          "successRate": 88.7,
+          "responseTime": 300,
+          "uptime": 98.5,
+          "errorRate": 5.2
+        },
+        "sessions": {
+          "total": 3420,
+          "costPerSession": 0.032
+        },
+        "tokens": {
+          "input": 2100000,
+          "output": 780000,
+          "total": 2880000
+        },
+        "tags": ["Development", "Code Review", "Quality"]
+      },
+      {
+        "id": "4",
+        "name": "Data Analyst",
+        "description": "Advanced analytics agent that processes large datasets and generates insights and reports.",
+        "status": "active",
+        "version": "v3.0.1",
+        "model": "GPT-4",
+        "lastActivity": "1 hour ago",
+        "performance": {
+          "successRate": 96.1,
+          "responseTime": 120,
+          "uptime": 99.7,
+          "errorRate": 1.8
+        },
+        "sessions": {
+          "total": 22800,
+          "costPerSession": 0.089
+        },
+        "tokens": {
+          "input": 3200000,
+          "output": 1800000,
+          "total": 5000000
+        },
+        "tags": ["Analytics", "Data Science", "Reports"]
+      },
+      {
+        "id": "5",
+        "name": "Translation Service",
+        "description": "Multi-language translation agent supporting 50+ languages with context-aware translations.",
+        "status": "error",
+        "version": "v2.3.0",
+        "model": "mT5",
+        "lastActivity": "2 hours ago",
+        "performance": {
+          "successRate": 89.3,
+          "responseTime": 180,
+          "uptime": 97.2,
+          "errorRate": 8.7
+        },
+        "sessions": {
+          "total": 12300,
+          "costPerSession": 0.052
+        },
+        "tokens": {
+          "input": 1850000,
+          "output": 1650000,
+          "total": 3500000
+        },
+        "tags": ["Translation", "Multilingual", "Communication"]
+      },
+      {
+        "id": "6",
+        "name": "Diagnosis Assistant",
+        "description": "Assists in preliminary diagnosis by analyzing medical record data and symptoms.",
+        "status": "testing",
+        "version": "v1.4.0",
+        "model": "BioBERT",
+        "lastActivity": "15 minutes ago",
+        "performance": {
+          "successRate": 90.0,
+          "responseTime": 160,
+          "uptime": 99.0,
+          "errorRate": 3.0
+        },
+        "sessions": {
+          "total": 6000,
+          "costPerSession": 0.07
+        },
+        "tokens": {
+          "input": 1000000,
+          "output": 800000,
+          "total": 1800000
+        },
+        "tags": ["Healthcare", "Diagnostics", "NLP"]
+      }
+    ]
+  },
+  {
+    "projectId": "prj-097",
+    "agents": [
+      {
+        "id": "1",
+        "name": "Recommendation Engine",
+        "description": "Generates personalized product recommendations based on user behavior.",
+        "status": "active",
+        "version": "v2.0.0",
+        "model": "Custom ML",
+        "lastActivity": "5 minutes ago",
+        "performance": {
+          "successRate": 93.0,
+          "responseTime": 110,
+          "uptime": 99.8,
+          "errorRate": 2.0
+        },
+        "sessions": {
+          "total": 25000,
+          "costPerSession": 0.04
+        },
+        "tokens": {
+          "input": 2200000,
+          "output": 1400000,
+          "total": 3600000
+        },
+        "tags": ["Recommendation", "E-commerce", "Personalization"]
+      },
+      {
+        "id": "2",
+        "name": "Content Generator",
+        "description": "Creative AI that generates high-quality marketing content, blog posts, and social media content.",
+        "status": "active",
+        "version": "v1.8.2",
+        "model": "GPT-4",
+        "lastActivity": "5 minutes ago",
+        "performance": {
+          "successRate": 91.2,
+          "responseTime": 200,
+          "uptime": 99.9,
+          "errorRate": 3.4
+        },
+        "sessions": {
+          "total": 8750,
+          "costPerSession": 0.067
+        },
+        "tokens": {
+          "input": 980000,
+          "output": 1340000,
+          "total": 2320000
+        },
+        "tags": ["Content", "Marketing", "Creative"]
+      },
+      {
+        "id": "3",
+        "name": "Customer Support Bot",
+        "description": "Intelligent customer service assistant that handles common inquiries and escalates complex issues to human agents.",
+        "status": "active",
+        "version": "v2.1.3",
+        "model": "GPT-4",
+        "lastActivity": "2 minutes ago",
+        "performance": {
+          "successRate": 94.5,
+          "responseTime": 150,
+          "uptime": 99.8,
+          "errorRate": 2.1
+        },
+        "sessions": {
+          "total": 15420,
+          "costPerSession": 0.045
+        },
+        "tokens": {
+          "input": 1250000,
+          "output": 890000,
+          "total": 2140000
+        },
+        "tags": ["Customer Service", "NLP", "Support"]
+      },
+      {
+        "id": "4",
+        "name": "Data Analyst",
+        "description": "Advanced analytics agent that processes large datasets and generates insights and reports.",
+        "status": "active",
+        "version": "v3.0.1",
+        "model": "GPT-4",
+        "lastActivity": "1 hour ago",
+        "performance": {
+          "successRate": 96.1,
+          "responseTime": 120,
+          "uptime": 99.7,
+          "errorRate": 1.8
+        },
+        "sessions": {
+          "total": 22800,
+          "costPerSession": 0.089
+        },
+        "tokens": {
+          "input": 3200000,
+          "output": 1800000,
+          "total": 5000000
+        },
+        "tags": ["Analytics", "Data Science", "Reports"]
+      }
+    ]
+  }
+]

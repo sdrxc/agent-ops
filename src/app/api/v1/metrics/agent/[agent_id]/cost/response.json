@@ -1,0 +1,32 @@
+{
+  "status": "success",
+  "project_id": "prj-1030",
+  "project_name": "Project01",
+  "agent_id": "10048",
+  "agent_name": "Testingall",
+  "data": {
+    "total_cost": 0.0001275,
+    "count_traces": 2,
+    "count_observations": 4,
+    "usage_by_model": [
+      {
+        "model": "gpt-4o",
+        "input_usage": 51,
+        "output_usage": 0,
+        "total_usage": 51,
+        "count_traces": 2,
+        "count_observations": 2,
+        "total_cost": 0.0001275
+      },
+      {
+        "model": "unknown",
+        "input_usage": 0,
+        "output_usage": 0,
+        "total_usage": 0,
+        "count_traces": 2,
+        "count_observations": 2,
+        "total_cost": 0
+      }
+    ]
+  }
+}

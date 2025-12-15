@@ -1,0 +1,10 @@
+{
+    "status": 200,
+    "message": "GitHub repo and branch validated successfully",
+    "data": {
+        "sequenceID": "FDFDFDFD-GFDGFG-GFGFGG",
+        "repository": "https://github.com/disler/single-file-agents.git",
+        "branch": "main",
+        "status": "validated"
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "status": 200,
+    "message": "Agents fetched successfully",
+    "data": {
+
+                "id": "agent-10052",
+                "name": "Authoring agent",
+                "description": "Authoring agent",
+                "status": "active",
+                "version": "1.0.0",
+                "model": null,
+                "tags": [],
+                "lastactivity": "2025-11-05T06:21:09.149410",
+                "lastActivity": "14 hours ago",
+                "agentAPI": "http://k8s-project1-project1-1d8c4ed009-587900353.us-east-1.elb.amazonaws.com/agent-10054/",
+                "agentdeploymenttype": "deployed"
+            }
+}

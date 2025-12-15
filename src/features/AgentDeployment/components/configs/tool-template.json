@@ -1,0 +1,67 @@
+{
+  "name": "",
+  "description": "",
+  "version": "0.0.0",
+  "tool_type": "api",
+  "tags": ["tag1", "tag2"],
+
+  "endpoint_url": "https://api.example.gov/v1/search",
+  "function_name": null,
+  "module_path": null,
+  "source_code": null,
+
+  "input_schema": {
+    "query": "string",
+    "filters": { "phase": "string" }
+  },
+  "output_schema": {
+    "results": "array",
+    "count": "integer"
+  },
+
+  "capabilities": [
+    {
+      "name": "",
+      "description": "",
+      "input_parameters": [
+        {
+          "name": "",
+          "parameter_type": "string",
+          "description": "",
+          "required": true,
+          "default_value": null,
+          "validation_rules": {},
+          "examples": ["example1", "example2"]
+        }
+      ],
+      "output_schema": { "results": "array" },
+      "examples": [
+        {
+          "input": { "query": "query1" },
+          "output": { "results": ["result1", "result2"] }
+        }
+      ]
+    }
+  ],
+
+  "parameters": [],
+  "dependencies": ["auth-service"],
+
+  "auth_secret_ref": "secret/some_api_key",
+
+  "author": "John Doe",
+  "license": "MIT",
+  "documentation_url": "https://docs.example.gov/api",
+
+  "trusted_source": true,
+  "security_clearance": "public/restricted",
+  "digital_signature": "abc123sig",
+
+  "status": "active",
+  "mcp_compatible": true,
+  "requires_auth": true,
+  "auth_config": {
+    "auth_type": "BearerToken",
+    "header_name": "Authorization"
+  }
+}

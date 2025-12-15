@@ -1,0 +1,10 @@
+{
+    "status": 200,
+    "message": "Server registered but health check failed",
+    "data": {
+        "serverID": 1004,
+        "health": "unreachable",
+        "visibility": "Private",
+        "isActive": true
+    }
+}

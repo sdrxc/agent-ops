@@ -1,0 +1,32 @@
+/**
+ * Bayer Brand Colors
+ * Design system color palette using OKLCH color space
+ */
+
+:root {
+  /* Deep shades - Darkest brand colors */
+  --deep-blue: oklch(0.2084 0.0417 266.36);
+  --deep-green: oklch(0.1921 0.0438 159.5);
+  --deep-purple: oklch(0.1842 0.0527 322.27);
+
+  /* Dark shades - Dark brand colors */
+  --dark-blue: oklch(0.3249 0.0599 238.09);
+  --dark-green: oklch(0.3393 0.0856 153.96);
+  --dark-purple: oklch(0.3459 0.0431 321.57);
+
+  /* Mid shades - Medium brand colors */
+  --mid-blue: oklch(0.4568 0.089173 228.1023);
+  --mid-green: oklch(0.4511 0.0969 148.8);
+  --mid-purple: oklch(0.4417 0.0523 325.16);
+  --mid-purple-50: oklch(0.7337 0.0236 325.81);
+
+  /* Primary brand colors */
+  --blue: oklch(0.5637 0.1371 243.31);
+  --green: oklch(0.6523 0.1816 133.83);
+  --raspberry: oklch(0.5555 0.2165 14);
+  --fuchsia: oklch(0.6544 0.2361 14.39);
+
+  /* Bright shades - Lightest brand colors */
+  --bright-blue: oklch(0.7484 0.1551 233.2517);
+  --bright-green: oklch(0.7886 0.2035 131.32);
+}

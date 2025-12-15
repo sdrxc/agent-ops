@@ -1,0 +1,55 @@
+{
+  "status": "success",
+  "project_id": "prj-1030",
+  "project_name": "Project01",
+  "agent_id": null,
+  "agent_name": null,
+  "data": {
+    "total_errors": 6,
+    "error_rate": 3.9215686274509802,
+    "recent_errors": [
+      {
+        "trace_id": "1fddec23a65dfd016abb51707f287fd0",
+        "observation_id": "ab0255ca6b58c089",
+        "status_message": "Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+        "timestamp": "2025-11-10T10:31:49.859Z",
+        "model": "gpt-3.5-turbo"
+      },
+      {
+        "trace_id": "1fddec23a65dfd016abb51707f287fd0",
+        "observation_id": "ab0255ca6b58c089",
+        "status_message": "Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+        "timestamp": "2025-11-10T10:31:49.859Z",
+        "model": "gpt-3.5-turbo"
+      },
+      {
+        "trace_id": "1fddec23a65dfd016abb51707f287fd0",
+        "observation_id": "ab0255ca6b58c089",
+        "status_message": "Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+        "timestamp": "2025-11-10T10:31:49.859Z",
+        "model": "gpt-3.5-turbo"
+      },
+      {
+        "trace_id": "127a753c3164030f04ae1d644f152721",
+        "observation_id": "9d5fe02a2e53ce11",
+        "status_message": "Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+        "timestamp": "2025-11-10T10:20:40.331Z",
+        "model": "gpt-4o"
+      },
+      {
+        "trace_id": "127a753c3164030f04ae1d644f152721",
+        "observation_id": "9d5fe02a2e53ce11",
+        "status_message": "Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+        "timestamp": "2025-11-10T10:20:40.331Z",
+        "model": "gpt-4o"
+      },
+      {
+        "trace_id": "127a753c3164030f04ae1d644f152721",
+        "observation_id": "9d5fe02a2e53ce11",
+        "status_message": "Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+        "timestamp": "2025-11-10T10:20:40.331Z",
+        "model": "gpt-4o"
+      }
+    ]
+  }
+}

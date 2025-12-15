@@ -1,0 +1,9 @@
+{
+    "status": 200,
+    "message": "Tool created successfully",
+    "data": {
+        "toolID": 110,
+        "status": "registered",
+        "visibility": "Public"
+    }
+}
