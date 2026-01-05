@@ -1,5 +1,5 @@
-@import 'tailwindcss';
-@import '../styles/bayer-brand-colors.css';
+@import "tailwindcss";
+@import "../styles/bayer-brand-colors.css";
 
 @plugin 'tailwindcss-animate';
 @plugin '@tailwindcss/typography';
@@ -34,7 +34,12 @@
   --foreground: oklch(0.141 0.005 285.823);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.141 0.005 285.823);
-  --card-gradient: linear-gradient(135deg, oklch(0.95 0.08 293) 0%, oklch(0.92 0.12 290) 50%, oklch(0.88 0.15 285) 100%);
+  --card-gradient: linear-gradient(
+    135deg,
+    oklch(0.95 0.08 293) 0%,
+    oklch(0.92 0.12 290) 50%,
+    oklch(0.88 0.15 285) 100%
+  );
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.141 0.005 285.823);
   --primary: oklch(0.541 0.281 293.009);
@@ -46,6 +51,10 @@
   --accent: oklch(0.967 0.001 286.375);
   --accent-foreground: oklch(0.21 0.006 285.885);
   --destructive: oklch(0.577 0.245 27.325);
+  --success: oklch(0.606 0.169 154.449);
+  --success-foreground: oklch(0.986 0 0);
+  --warning: oklch(0.735 0.148 74.987);
+  --warning-foreground: oklch(0.141 0.005 285.823);
   --border: oklch(0.92 0.004 286.32);
   --input: oklch(0.92 0.004 286.32);
   --ring: oklch(0.702 0.183 293.541);
@@ -69,7 +78,12 @@
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.21 0.006 285.885);
   --card-foreground: oklch(0.985 0 0);
-  --card-gradient: linear-gradient(135deg, oklch(0.35 0.15 293) 0%, oklch(0.28 0.18 290) 50%, oklch(0.22 0.20 285) 100%);
+  --card-gradient: linear-gradient(
+    135deg,
+    oklch(0.35 0.15 293) 0%,
+    oklch(0.28 0.18 290) 50%,
+    oklch(0.22 0.2 285) 100%
+  );
   --popover: oklch(0.21 0.006 285.885);
   --popover-foreground: oklch(0.985 0 0);
   --primary: oklch(0.606 0.25 292.717);
@@ -81,6 +95,10 @@
   --accent: oklch(0.274 0.006 286.033);
   --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.704 0.191 22.216);
+  --success: oklch(0.721 0.157 165.695);
+  --success-foreground: oklch(0.141 0.005 285.823);
+  --warning: oklch(0.768 0.137 81.346);
+  --warning-foreground: oklch(0.141 0.005 285.823);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.38 0.189 293.745);
@@ -104,7 +122,7 @@
   --font-sans: var(--font-bayer-sans), system-ui, sans-serif;
   --font-mono: var(--font-noto-sans-mono), monospace;
 
- /* Base Color Tokens */
+  /* Base Color Tokens */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
@@ -126,6 +144,10 @@
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
 
   /* Border & Input Tokens */
   --color-border: var(--border);
@@ -148,7 +170,6 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
-
 
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
@@ -229,5 +250,31 @@
 
   body {
     @apply bg-background text-foreground;
+  }
+
+  /* Custom Global Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  /* Thumb with subtle default visibility */
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground/10 rounded-full;
+    transition: background-color 0.2s ease;
+  }
+
+  /* More prominent on hover of the thumb itself */
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted-foreground/40;
+  }
+
+  /* Also show more prominently when hovering the container */
+  *:hover::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground/20;
   }
 }

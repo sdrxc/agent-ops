@@ -11,7 +11,22 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
-import { Calendar, Clock, UserCircle2, Bot, Copy } from "lucide-react";
+import {
+  Calendar,
+  Clock,
+  UserCircle2,
+  Bot,
+  Copy,
+  MoreVertical,
+  Trash2,
+} from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
 import { format } from "date-fns";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -34,6 +49,7 @@ interface ProjectCardProps {
   onExplore?: (projectId: string) => void;
   onConfigure?: (projectId: string) => void;
   onCardClick?: (project: Project) => void;
+  onDelete?: (projectId: string) => void;
 }
 
 const getStatusDotColor = (status: Project["status"]) => {
@@ -70,6 +86,7 @@ export function ProjectCard({
   project,
   onExplore,
   onCardClick,
+  onDelete,
 }: ProjectCardProps) {
   const [copied, setCopied] = useState(false);
   const router = useRouter();
@@ -85,6 +102,17 @@ export function ProjectCard({
     onCardClick?.(project);
     onExplore?.(project.id);
     router.push(`/projects/${project.id}`);
+  };
+
+  const handleDelete = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (
+      confirm(
+        `Are you sure you want to delete "${project.name}"? This action cannot be undone.`
+      )
+    ) {
+      onDelete?.(project.id);
+    }
   };
 
   return (
@@ -118,6 +146,33 @@ export function ProjectCard({
                 getStatusDotColor(project.status)
               )}
             />
+            {onDelete && (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="h-6 w-6 p-0 ml-1"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <MoreVertical className="h-4 w-4" />
+                    <span className="sr-only">Open menu</span>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent
+                  align="end"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <DropdownMenuItem
+                    onClick={handleDelete}
+                    className="text-red-600 focus:text-red-600 cursor-pointer"
+                  >
+                    <Trash2 className="mr-2 h-4 w-4" />
+                    Delete Project
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            )}
           </div>
         </div>
         <Separator />
@@ -127,7 +182,6 @@ export function ProjectCard({
       </CardHeader>
 
       <CardContent className="space-y-3">
-
         <Table>
           <TableBody>
             <TableRow className="hover:bg-transparent">
@@ -179,7 +233,10 @@ export function ProjectCard({
               </Badge>
             ))}
             {project.tags.length > 2 && (
-              <Badge variant="secondary" className="bg-background px-1.5 py-0.5 text-xs">
+              <Badge
+                variant="secondary"
+                className="bg-background px-1.5 py-0.5 text-xs"
+              >
                 +{project.tags.length - 2}
               </Badge>
             )}

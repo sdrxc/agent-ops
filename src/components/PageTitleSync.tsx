@@ -6,16 +6,30 @@ import { usePageTitle } from "@/contexts/PageTitleContext"
 
 // Map routes to their display titles
 const ROUTE_TITLES: Record<string, string> = {
-  "/": "AgentHub",
+  "/": "System Health",
   "/projects-directory": "Your Projects",
   "/incident-reporting": "Incident Reporting",
+  "/incidents": "Incidents",
   "/cost-estimation": "Cost Estimation",
   "/agent-catalogue": "Agent Catalogue",
   "/tool-catalogue": "Tool Catalogue",
   "/server-catalogue": "Server Catalogue",
-  "/user-guide": "User Guide",
+  "/user-guide": "Getting Started",
   "/project-setup": "Project Setup",
   "/agent-hosting": "Agent Hosting",
+  "/logs": "Logs and Traces",
+  "/assistant": "Prompt Manager",
+  "/knowledge": "Knowledge",
+  "/agents": "My Agents",
+  "/workflows": "Workflows",
+  "/simulator": "Simulator",
+  "/playground": "Prompt Playground",
+  "/deployments": "Deployments",
+  "/mcp-registry": "MCP Registry",
+  "/api-management": "API Management",
+  "/agent-community": "Agent Community",
+  "/dev-settings": "Developer Settings",
+  "/integrations": "Integrations",
 }
 
 /**
@@ -40,6 +54,16 @@ export function PageTitleSync() {
 
     if (pathname.startsWith("/projectAgentDeployment/")) {
       setPageTitle("Agent Deployment")
+      return
+    }
+
+    if (pathname.startsWith("/traces/")) {
+      setPageTitle("Trace Analysis")
+      return
+    }
+
+    if (pathname.startsWith("/sessions/")) {
+      setPageTitle("Session Details")
       return
     }
 

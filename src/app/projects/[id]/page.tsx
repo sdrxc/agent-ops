@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import { Button } from "@/components/ui/button";
 import {
-  ArrowLeft,
   Folder,
   User,
   Users,
@@ -23,17 +22,20 @@ import {
   Target,
 } from "lucide-react";
 import { Layout } from "@/components/Layout";
+import { PageHeader } from "@/components/PageHeader";
 import {
   Card,
   CardContent,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useGlobalContext } from "@/app/GlobalContextProvider";
+import { useFeatureFlags } from "@/contexts/FeatureFlagsContext";
 import { KPIProjectDashboard } from "@/components/KPIProjectDashboard";
-import { AgentDeploymentDashboard } from "@/features/AgentDeploymentDashboard/AgentDeploymentDashboard";
+import { AgentDeploymentDashboard } from "@/domains/agents/dashboard/AgentDeploymentDashboard";
 import { motion } from "framer-motion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { MetricProjectTemplate } from "@/components/MetricProjectTemplate";
+import { ProjectDashboardMetrics } from "@/types/api";
 import {
   Accordion,
   AccordionItem,
@@ -88,12 +90,13 @@ export default function ProjectPage({
 
   const router = useRouter();
   const { user } = useGlobalContext();
+  const { projectDetailsMetricsEnabled } = useFeatureFlags();
 
   const [project, setProject] = useState<Project | null>(null);
   const [loading, setLoading] = useState(true);
   const [fetchError, setFetchError] = useState(false);
 
-  const [projectMetrics, setProjectMetrics] = useState<any>(null);
+  const [projectMetrics, setProjectMetrics] = useState<ProjectDashboardMetrics | null>(null);
   const [metricsLoading, setMetricsLoading] = useState(false);
   const [metricsError, setMetricsError] = useState(false);
 
@@ -253,165 +256,162 @@ useEffect(() => {
 
   return (
     <Layout>
-      <div className="space-y-10 p-6 sm:p-8 md:p-12 lg:p-16">
-        {/* Header Section */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-6 border-b border-gray-200 dark:border-gray-800">
-          <div className="flex items-start gap-4 flex-1 min-w-0">
-            <div className="p-4 bg-primary/10 rounded-xl shadow-lg flex items-center justify-center shrink-0">
-              <Folder className="h-8 w-8 text-primary" />
-            </div>
-            <div className="flex-1 min-w-0">
-              <h1 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-50 truncate">
-                {activeProject.projectName}
-              </h1>
-              <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
-                Project ID: {activeProject.projectID}
-              </p>
-              <p className="text-gray-700 text-xs dark:text-gray-300 mt-2">
+      <div className="flex flex-col h-full space-y-6">
+        {/* Header */}
+        <PageHeader
+          backButton={{ href: "/agents", label: "Back to Agents" }}
+          title={activeProject.projectName}
+          description={
+            <div className="space-y-2">
+              <p className="text-sm">
                 {activeProject.Description ||
                   "No detailed description has been provided for this project."}
               </p>
-              {activeProject.tags && activeProject.tags.length > 0 && (
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {activeProject.tags.map((tag, index) => (
-                    <Badge
-                      key={index}
-                      variant="outline"
-                      className="px-3 py-1 text-xs font-normal"
-                    >
-                      {tag}
-                    </Badge>
-                  ))}
-                </div>
-              )}
+              <div className="flex items-center gap-4 flex-wrap">
+                <p className="text-xs text-muted-foreground">
+                  Project ID: {activeProject.projectID}
+                </p>
+                {activeProject.tags && activeProject.tags.length > 0 && (
+                  <div className="flex flex-wrap gap-2">
+                    {activeProject.tags.map((tag, index) => (
+                      <Badge
+                        key={index}
+                        variant="outline"
+                        className="px-2 py-0.5 text-xs font-normal"
+                      >
+                        {tag}
+                      </Badge>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
-          </div>
-          <Button
-            variant="outline"
-            onClick={() => router.push("/")}
-            className="md:self-start mt-4 md:mt-0"
-          >
-            <ArrowLeft className="h-4 w-4 mr-2" />
-            Back to Directory
-          </Button>
-        </div>
+          }
+        />
 
-        {/* Metadata Section */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <DetailCard
-            label="Created By"
-            value={activeProject.CreateBy}
-            icon={<User className="h-5 w-5" />}
-          />
-          <DetailCard
-            label="Agents"
-            value={activeProject.agentsCount}
-            icon={<Users className="h-5 w-5" />}
-          />
-          <DetailCard
-            label="Created At"
-            value={new Date(activeProject.Creation).toLocaleDateString()}
-            icon={<Calendar className="h-5 w-5" />}
-          />
-          <DetailCard
-            label="Last Updated"
-            value={new Date(activeProject.LastUpdate).toLocaleDateString()}
-            icon={<Clock className="h-5 w-5" />}
-          />
-        </div>
-
-        {/* KPI Dashboard */}
-        <div className="space-y-4">
-          <h3 className="text-m font-semibold text-gray-600 dark:text-gray-100 flex items-center">
-            <Gauge className="h-5 w-5 mr-2 text-violet-500" />
-            Project Performance Dashboard
-          </h3>
-
-          <div className="space-y-6 bg-gradient-to-r from-violet-100 dark:from-violet-900/50 to-violet-200 dark:to-violet-800/50 p-6 rounded-2xl border border-violet-200/50 dark:border-violet-700/50 @container">
-            {metricsLoading ? (
-              <div className="text-center text-gray-500 dark:text-gray-400 py-10 animate-pulse">
-                <Gauge className="h-6 w-6 mx-auto mb-2 text-primary" />
-                Fetching live metrics...
+        {/* Main Content */}
+        <div className="space-y-6">
+          {projectDetailsMetricsEnabled && (
+            <>
+              {/* Metadata Section */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <DetailCard
+                  label="Created By"
+                  value={activeProject.CreateBy}
+                  icon={<User className="h-5 w-5" />}
+                />
+                <DetailCard
+                  label="Agents"
+                  value={activeProject.agentsCount}
+                  icon={<Users className="h-5 w-5" />}
+                />
+                <DetailCard
+                  label="Created At"
+                  value={new Date(activeProject.Creation).toLocaleDateString()}
+                  icon={<Calendar className="h-5 w-5" />}
+                />
+                <DetailCard
+                  label="Last Updated"
+                  value={new Date(activeProject.LastUpdate).toLocaleDateString()}
+                  icon={<Clock className="h-5 w-5" />}
+                />
               </div>
-            ) : projectMetrics ? (
-              <KPIProjectDashboard metrics={projectMetrics} />
-            ) : (
-              <div className="text-center text-gray-500 dark:text-gray-400 py-10">
-                <AlertTriangle className="h-6 w-6 mx-auto mb-2 text-red-500" />
-                {metricsError
-                  ? "Could not load live metrics. Please try again later."
-                  : "No metrics available for this project."}
+
+              {/* KPI Dashboard */}
+              <div className="space-y-4">
+                <h3 className="text-m font-semibold text-gray-600 dark:text-gray-100 flex items-center">
+                  <Gauge className="h-5 w-5 mr-2 text-violet-500" />
+                  Project Performance Dashboard
+                </h3>
+
+                <div className="space-y-6 bg-gradient-to-r from-violet-100 dark:from-violet-900/50 to-violet-200 dark:to-violet-800/50 p-6 rounded-2xl border border-violet-200/50 dark:border-violet-700/50 @container">
+                  {metricsLoading ? (
+                    <div className="text-center text-gray-500 dark:text-gray-400 py-10 animate-pulse">
+                      <Gauge className="h-6 w-6 mx-auto mb-2 text-primary" />
+                      Fetching live metrics...
+                    </div>
+                  ) : projectMetrics ? (
+                    <KPIProjectDashboard metrics={projectMetrics} />
+                  ) : (
+                    <div className="text-center text-gray-500 dark:text-gray-400 py-10">
+                      <AlertTriangle className="h-6 w-6 mx-auto mb-2 text-red-500" />
+                      {metricsError
+                        ? "Could not load live metrics. Please try again later."
+                        : "No metrics available for this project."}
+                    </div>
+                  )}
+                </div>
               </div>
-            )}
-          </div>
-        </div>
 
-        {/* Metrics Tabs */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.2 }}
-        >
-          <Accordion type="single" collapsible defaultValue="">
-            <AccordionItem value="metrics">
-              <AccordionTrigger className="text-lg font-semibold text-gray-700 dark:text-gray-100 flex items-center">
-                <Activity className="h-5 w-5 mr-2 text-blue-500" />
-                Detailed Traces & Metrics
-              </AccordionTrigger>
-              <AccordionContent>
-                <Card className="rounded-2xl shadow-md border border-gray-200/60 dark:border-gray-800/60 bg-white/60 dark:bg-zinc-900/60 backdrop-blur-xl mt-4">
-                  <CardContent className="p-0">
-                    <Tabs defaultValue="cost" className="w-full">
-                      <div className="overflow-x-auto scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-700 rounded-t-2xl">
-                        <TabsList className="flex min-w-max sm:min-w-0 justify-start gap-1 p-3 border-b border-gray-200 dark:border-gray-800 bg-gray-50/80 dark:bg-zinc-900/80 backdrop-blur-lg rounded-t-2xl">
-                          {tabs.map((tab) => (
-                            <TabsTrigger
-                              key={tab.id}
-                              value={tab.id}
-                              className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition-colors whitespace-nowrap hover:bg-primary/10 data-[state=active]:bg-primary data-[state=active]:text-white"
-                            >
-                              <tab.icon className="h-4 w-4" />
-                              {tab.label}
-                            </TabsTrigger>
-                          ))}
-                        </TabsList>
-                      </div>
+              {/* Metrics Tabs */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.2 }}
+              >
+                <Accordion type="single" collapsible defaultValue="">
+                  <AccordionItem value="metrics">
+                    <AccordionTrigger className="text-lg font-semibold text-gray-700 dark:text-gray-100 flex items-center">
+                      <Activity className="h-5 w-5 mr-2 text-blue-500" />
+                      Detailed Traces & Metrics
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      <Card className="rounded-2xl shadow-md border border-gray-200/60 dark:border-gray-800/60 bg-white/60 dark:bg-zinc-900/60 backdrop-blur-xl mt-4">
+                        <CardContent className="p-0">
+                          <Tabs defaultValue="cost" className="w-full">
+                            <div className="overflow-x-auto scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-700 rounded-t-2xl">
+                              <TabsList className="flex min-w-max sm:min-w-0 justify-start gap-1 p-3 border-b border-gray-200 dark:border-gray-800 bg-gray-50/80 dark:bg-zinc-900/80 backdrop-blur-lg rounded-t-2xl">
+                                {tabs.map((tab) => (
+                                  <TabsTrigger
+                                    key={tab.id}
+                                    value={tab.id}
+                                    className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition-colors whitespace-nowrap hover:bg-primary/10 data-[state=active]:bg-primary data-[state=active]:text-white"
+                                  >
+                                    <tab.icon className="h-4 w-4" />
+                                    {tab.label}
+                                  </TabsTrigger>
+                                ))}
+                              </TabsList>
+                            </div>
 
-                      {tabs.map((tab) => (
-                        <TabsContent
-                          key={tab.id}
-                          value={tab.id}
-                          className="p-6 text-gray-600 dark:text-gray-300 text-sm"
-                        >
-                          <MetricProjectTemplate tabId={tab.id} projectID={projectID} />
-                        </TabsContent>
-                      ))}
-                    </Tabs>
-                  </CardContent>
-                </Card>
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
-        </motion.div>
+                            {tabs.map((tab) => (
+                              <TabsContent
+                                key={tab.id}
+                                value={tab.id}
+                                className="p-6 text-gray-600 dark:text-gray-300 text-sm"
+                              >
+                                <MetricProjectTemplate tabId={tab.id} projectID={projectID} />
+                              </TabsContent>
+                            ))}
+                          </Tabs>
+                        </CardContent>
+                      </Card>
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+              </motion.div>
+            </>
+          )}
 
-        {/* Agent Dashboard Section */}
-        <div className="space-y-4 pt-4 border-t border-gray-200 dark:border-gray-800">
+          {/* Agent Dashboard Section */}
+          <div className="space-y-4 pt-4 border-t border-gray-200 dark:border-gray-800">
           <Card className="shadow-lg">
             <CardContent className="pt-6">
               <AgentDeploymentDashboard projectID={activeProject.projectID} />
             </CardContent>
           </Card>
-        </div>
-
-        {/* Fallback Error Message */}
-        {fetchError && (
-          <div className="flex items-center justify-center p-4 rounded-lg bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-400 mt-8 border border-red-200 dark:border-red-900">
-            <AlertTriangle className="h-5 w-5 mr-2 shrink-0" />
-            <span className="font-medium">
-              Could not load full project details. Showing cached or fallback data.
-            </span>
           </div>
-        )}
+
+          {/* Fallback Error Message */}
+          {fetchError && (
+            <div className="flex items-center justify-center p-4 rounded-lg bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-400 border border-red-200 dark:border-red-900">
+              <AlertTriangle className="h-5 w-5 mr-2 shrink-0" />
+              <span className="font-medium">
+                Could not load full project details. Showing cached or fallback data.
+              </span>
+            </div>
+          )}
+        </div>
       </div>
     </Layout>
   );

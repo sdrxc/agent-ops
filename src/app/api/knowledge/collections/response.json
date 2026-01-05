@@ -1,0 +1,90 @@
+{
+  "status": 200,
+  "message": "Collections fetched successfully",
+  "data": {
+    "collections": [
+      {
+        "id": "col_1",
+        "name": "Product Documentation",
+        "description": "Technical documentation and user guides",
+        "documentCount": 12,
+        "totalSize": "45.2 MB",
+        "created": "2024-01-15T10:30:00Z",
+        "updated": "2024-01-20T14:22:00Z",
+        "tags": [
+          "documentation",
+          "technical"
+        ],
+        "category": "Documentation",
+        "mcpEndpoints": [
+          "mcp://docs.internal/v1"
+        ],
+        "tools": [
+          {
+            "name": "get_spec",
+            "description": "Retrieve product specification by ID",
+            "usage": "get_spec('product_id')"
+          },
+          {
+            "name": "search_docs",
+            "description": "Search documentation by keywords",
+            "usage": "search_docs('keywords')"
+          }
+        ],
+        "usageExample": "Retrieve product specs: `get_spec('product_id')`"
+      },
+      {
+        "id": "col_2",
+        "name": "Research Papers",
+        "description": "Academic papers and research findings",
+        "documentCount": 8,
+        "totalSize": "32.8 MB",
+        "created": "2024-01-10T09:15:00Z",
+        "updated": "2024-01-18T11:45:00Z",
+        "tags": [
+          "research",
+          "academic"
+        ],
+        "category": "Research",
+        "mcpEndpoints": [
+          "mcp://research.db/query"
+        ],
+        "tools": [
+          {
+            "name": "search_papers",
+            "description": "Search research papers by keywords",
+            "usage": "search_papers('keywords')"
+          }
+        ],
+        "usageExample": "Search papers: `search_papers('keywords')`"
+      },
+      {
+        "id": "col_3",
+        "name": "Company Policies",
+        "description": "Internal policies and procedures",
+        "documentCount": 5,
+        "totalSize": "12.5 MB",
+        "created": "2024-01-05T08:00:00Z",
+        "updated": "2024-01-12T16:30:00Z",
+        "tags": [
+          "policies",
+          "internal"
+        ],
+        "category": "Governance",
+        "mcpEndpoints": [
+          "mcp://policy.hr/check"
+        ],
+        "tools": [
+          {
+            "name": "check_policy",
+            "description": "Check policy compliance by policy ID",
+            "usage": "check_policy('policy_id')"
+          }
+        ],
+        "usageExample": "Check compliance: `check_policy('policy_id')`"
+      }
+    ]
+  }
+}
+
+

@@ -2,13 +2,7 @@
 
 import { useState, useMemo, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Button } from "@/components/ui/button";
 import {
-  Plus,
-  RefreshCcw,
-  FolderPlus,
-  FilePlus2,
-  Gauge,
   Activity,
   TerminalSquare,
   BarChart2,
@@ -21,22 +15,10 @@ import {
   Zap,
   Target,
 } from "lucide-react";
-import { ProjectCard } from "@/components/cards/ProjectCard";
 import { useGlobalContext } from "@/app/GlobalContextProvider";
 import axios from "axios";
-import {
-  PageHeader,
-  PageToolbar,
-  ContentGrid,
-} from "@/components/page-sections";
+import { PageHeader } from "@/components/PageHeader";
 import { KPIPlatformDashboard } from "@/components/KPIPlatformDashboard";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-} from "@/components/ui/dialog";
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -44,13 +26,8 @@ import { MetricPlatformTemplate } from "@/components/MetricPlatformTemplate";
 
 export const HomePageFeature = () => {
   const router = useRouter();
-  const [query, setQuery] = useState("");
-  const [projects, setProjects] = useState<any[]>([]);
-  const [loadingProjects, setLoadingProjects] = useState(true);
-  const [openDialog, setOpenDialog] = useState(false);
   const [metrics, setMetrics] = useState<any | null>(null);
   const [loadingMetrics, setLoadingMetrics] = useState(true);
-  const [mainTab, setMainTab] = useState("service-quality");
 
   const { user, loading } = useGlobalContext();
 
@@ -60,10 +37,6 @@ export const HomePageFeature = () => {
     const runtimeEnv = process.env.NEXT_PUBLIC_APP_ENV;
     const baseURL = process.env.NEXT_PUBLIC_API_URL || "";
     const isLocalEnv = runtimeEnv === "local";
-
-    const listProjectsURL = isLocalEnv
-      ? `${baseURL}/api/listProjects`
-      : `/api/listProjects`;
 
     const successRateURL = isLocalEnv
       ? `${baseURL}/api/v1/metrics/platform/success-rate`
@@ -87,19 +60,16 @@ export const HomePageFeature = () => {
 
     const fetchAll = async () => {
       try {
-        setLoadingProjects(true);
         setLoadingMetrics(true);
 
-        // Fetch projects and metrics in parallel
+        // Fetch metrics in parallel
         const [
-          projectsRes,
           accuracyRes,
           successRes,
           efficiencyRes,
           errorsRes,
           throughputRes,
         ] = await Promise.allSettled([
-          axios.post(listProjectsURL, { userID: user.userID }),
           axios.get(accuracyURL),
           axios.get(successRateURL),
           axios.get(efficiencyURL),
@@ -107,20 +77,12 @@ export const HomePageFeature = () => {
           axios.get(throughputURL),
         ]);
 
-        // --- Handle Projects ---
-        let projectsData: any[] = [];
-        if (
-          projectsRes.status === "fulfilled" &&
-          (projectsRes.value.status === 200 || projectsRes.value.status === 201)
-        ) {
-          projectsData = Array.isArray(projectsRes.value.data)
-            ? projectsRes.value.data
-            : projectsRes.value.data?.data?.projects || [];
-          setProjects(projectsData);
-        }
-
         // --- Metrics computation ---
-        const total_projects = projectsData.length || 0;
+        // Note: Total projects might be missing if we don't fetch it, but we can ignore or fetch count separately if needed.
+        // For now, setting total_projects to 0 or N/A as we removed the call. 
+        // Or strictly speaking, the user might still want to see the count. 
+        // But the previous implementation derived it from the list.
+        const total_projects = 0;
 
         const accuracy =
           accuracyRes.status === "fulfilled"
@@ -165,33 +127,13 @@ export const HomePageFeature = () => {
       } catch (err) {
         console.error("Failed to fetch platform metrics:", err);
         setMetrics(null);
-        setProjects([]);
       } finally {
-        setLoadingProjects(false);
         setLoadingMetrics(false);
       }
     };
 
     fetchAll();
   }, [loading, user?.userID]);
-
-  const filteredProjects = useMemo(() => {
-    if (!query.trim()) return projects;
-    const search = query.toLowerCase();
-    return projects.filter(
-      (p) =>
-        p.projectName.toLowerCase().includes(search) ||
-        p.Description?.toLowerCase().includes(search) ||
-        p.Tags?.some((tag: string) => tag.toLowerCase().includes(search))
-    );
-  }, [query, projects]);
-
-  const mainTabs = [
-    { id: "service-quality", label: "Service Quality", icon: Shield },
-    { id: "cost-management", label: "Cost Management", icon: DollarSign },
-    { id: "resource-efficiency", label: "Resource Efficiency", icon: Zap },
-    { id: "platform-activity", label: "Platform Activity", icon: Activity },
-  ];
 
   const tabs = [
     { id: "efficiency", label: "Efficiency", icon: Network },
@@ -208,7 +150,7 @@ export const HomePageFeature = () => {
   return (
     <div className="space-y-6">
       <PageHeader
-        title="Overall Performance"
+        title="Performance Dashboard"
         description="Get a unified view of your platform's key performance indicators."
       />
       <div>
@@ -271,53 +213,6 @@ export const HomePageFeature = () => {
           )}
         </div>
       </div>
-
-      {/* Project Section */}
-
-      <PageToolbar
-        searchPlaceholder="Search projects..."
-        searchValue={query}
-        onSearchChange={setQuery}
-        actions={
-          <>
-            <Button onClick={() => router.push("/project-register")}>
-              <Plus className="w-4 h-4" />
-              Register Project
-            </Button>
-            <Button
-              onClick={() => window.location.reload()}
-              variant="outline"
-              size="icon"
-            >
-              <RefreshCcw className="w-4 h-4" />
-            </Button>
-          </>
-        }
-      />
-
-      <ContentGrid
-        columns={{ sm: 1, md: 2, lg: 3 }}
-        loading={loading || loadingProjects}
-        empty={!loading && !loadingProjects && filteredProjects.length === 0}
-      >
-        {filteredProjects.map((p) => (
-          <ProjectCard
-            key={p.projectID}
-            project={{
-              id: p.projectID,
-              name: p.projectName,
-              description: p.Description,
-              createdAt: p.Creation,
-              updatedAt: p.LastUpdate,
-              agentsCount: p.agentsCount,
-              createdBy: p.CreateBy,
-              tags: p.Tags,
-              status: p.projectStatus,
-            }}
-            onExplore={(id) => router.push(`/projects/${id}`)}
-          />
-        ))}
-      </ContentGrid>
     </div>
   );
 };

@@ -1,5 +1,5 @@
-import { NextAuthOptions } from "next-auth";
-import CredentialsProvider from "next-auth/providers/credentials";
+import NextAuth from "next-auth";
+import Credentials from "next-auth/providers/credentials";
 import crypto from "crypto";
 
 // 👇 import your SSO provider(s) here
@@ -25,13 +25,13 @@ function generateSessionId(user: { id: string; email: string }): string {
   return crypto.createHash("sha256").update(raw).digest("hex");
 }
 
-// NextAuth configuration
-export const authOptions: NextAuthOptions = {
+// NextAuth v5 configuration
+export const { auth, handlers, signIn, signOut } = NextAuth({
   providers: [
     // ✅ Local-only dummy credentials provider
     ...(process.env.NEXT_PUBLIC_ENVIRONMENT?.toLowerCase() === "local"
       ? [
-          CredentialsProvider({
+          Credentials({
             id: "credentials",
             name: "Local Dummy Login",
             credentials: {
@@ -45,7 +45,7 @@ export const authOptions: NextAuthOptions = {
               return {
                 id: "local-admin-user-id",
                 name: "Admin User (Local)",
-                email: credentials.email,
+                email: credentials.email as string,
                 role: "admin",
               };
             },
@@ -75,12 +75,6 @@ export const authOptions: NextAuthOptions = {
   },
 
   callbacks: {
-    async redirect({ url, baseUrl }) {
-      if (url.startsWith("/")) return `${baseUrl}${url}`;
-      else if (new URL(url).origin === baseUrl) return url;
-      return baseUrl;
-    },
-
     async jwt({ token, user }) {
       if (user) {
         token.user = {
@@ -105,15 +99,13 @@ export const authOptions: NextAuthOptions = {
     },
   },
 
-  secret:
-    process.env.NEXTAUTH_SECRET || "your-secret-key-change-in-production",
-};
+  secret: process.env.NEXTAUTH_SECRET || "your-secret-key-change-in-production",
+});
 
-import { getServerSession as getNextAuthServerSession } from "next-auth/next";
-
-// ✅ Helper to get current session
+// ✅ Helper to get current session (v5 compatible)
 export async function getServerSession(): Promise<Session | null> {
-  return (await getNextAuthServerSession(authOptions)) as Session | null;
+  const session = await auth();
+  return session as Session | null;
 }
 
 // ✅ Helper to get current user

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
+import { fetchWithMockFallback } from "@/lib/api/middleware";
 import response from "./response.json";
-import axios from "axios";
 
 const serverCreationSchema = z.object({
   userID: z.string(),
@@ -12,36 +12,27 @@ const serverCreationSchema = z.object({
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-
-    // FIX: validate body directly
-     const validatedPayload = serverCreationSchema.parse(body);
+    const validatedPayload = serverCreationSchema.parse(body);
     console.log("Validated Payload:", validatedPayload);
-    const env = process.env.NEXT_PUBLIC_APP_ENV;
 
-    console.log('ENV :', env);
-    console.log('BACKEND_URL :', process.env.BACKEND_URL);
-
-    // ✅ Use mock during local dev
-    if (env === "local") {
-      const data = response;
-      return NextResponse.json(data); // 👈 response.json content is returned
-    }
-    //const data = response
-    //return NextResponse.json(data);
-
-    const { data } = await axios.post(
-      `${process.env.BACKEND_URL}/api/serverCreation`,
-      validatedPayload,
-      { headers: { "Content-Type": "application/json" } }
+    const data = await fetchWithMockFallback(
+      {
+        method: "POST",
+        url: "/api/serverCreation",
+        data: validatedPayload,
+      },
+      response
     );
 
     return NextResponse.json(data);
-
   } catch (error) {
-    console.error("Validation failed:", error);
-    return NextResponse.json(
-      { status: "error", message: "Invalid payload", error },
-      { status: 400 }
-    );
+    if (error instanceof z.ZodError) {
+      return NextResponse.json(
+        { status: "error", message: "Invalid payload", error: error.errors },
+        { status: 400 }
+      );
+    }
+    console.error("❌ Unexpected error, using mock data:", error);
+    return NextResponse.json(response);
   }
 }

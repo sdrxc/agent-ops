@@ -1,11 +1,12 @@
-import { getServerSession } from "next-auth";
-import { AgentCatalogue } from "@/features/AgentCatalogue/AgentCatalogue";
+"use client";
 
-export default async function Page() {
+import { Layout } from "@/components/Layout";
+import { AgentCatalogue } from "@/domains/agents/catalogue/AgentCatalogue";
 
-    // const session = await getServerSession();
-    // if (!session) {
-    //     return }
-    
-    return <AgentCatalogue />
+export default function Page() {
+  return (
+    <Layout>
+      <AgentCatalogue />
+    </Layout>
+  );
 }

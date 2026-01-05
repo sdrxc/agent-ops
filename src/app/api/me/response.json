@@ -1,0 +1,17 @@
+{
+  "status": "success",
+  "action": "get_user",
+  "user": {
+    "userid": 1,
+    "usertype": "internal",
+    "role": "admin",
+    "username": "Bayer User",
+    "email": "testuser@bayer.com",
+    "accessdetails": {
+      "permissions": ["read", "write", "admin"]
+    },
+    "createdon": "2024-01-01T00:00:00Z",
+    "lastupdated": "2024-01-01T00:00:00Z"
+  }
+}
+

@@ -7,6 +7,8 @@ import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
+import { MetricItem } from "./MetricProjectTemplate";
+
 interface MetricTemplateProps {
   tabId: string;
   agentId: string;
@@ -502,7 +504,7 @@ function MetricList({
   emptyMessage,
 }: {
   title: string;
-  items: any[];
+  items: MetricItem[];
   fields: string[];
   emptyMessage?: string;
 }) {

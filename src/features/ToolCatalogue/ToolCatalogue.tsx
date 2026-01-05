@@ -29,7 +29,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import ToolCreationDialogBox from "../AgentDeployment/components/steps/ToolCreationDialog";
+import ToolCreationDialogBox from "@/domains/deployment/components/steps/ToolCreationDialog";
 
 // ---------------- MOCK DATA ----------------
 type Tool = {

@@ -2,9 +2,6 @@
 const nextConfig = {
   reactStrictMode: true,
   
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
 
   // Fix cross-origin warning for cloud environments
   allowedDevOrigins: [
@@ -28,7 +25,12 @@ const nextConfig = {
 
   // Optimize images
   images: {
-    domains: ["localhost"],
+    remotePatterns: [
+      {
+        protocol: "http",
+        hostname: "localhost",
+      },
+    ],
     formats: ["image/webp", "image/avif"],
   },
 

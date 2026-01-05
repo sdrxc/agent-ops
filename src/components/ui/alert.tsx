@@ -11,12 +11,16 @@ const alertVariants = cva(
         default: "bg-background text-foreground",
         destructive:
           "border-destructive/50 text-destructive dark:border-destructive [&>svg]:text-destructive",
+        success:
+          "bg-success/10 border-success/20 text-success-foreground [&>svg]:text-success",
+        warning:
+          "bg-warning/10 border-warning/20 text-warning-foreground [&>svg]:text-warning",
       },
     },
     defaultVariants: {
       variant: "default",
     },
-  },
+  }
 );
 
 const Alert = React.forwardRef<

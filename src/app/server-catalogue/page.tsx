@@ -1,15 +1,12 @@
-import { getServerSession } from "next-auth";
-import { ServerCatalogue } from "@/features/ServerCatalogue/ServerCatalogue";
+"use client";
 
-interface PageProps {
-  params: { projectID: string };
-}
+import { Layout } from "@/components/Layout";
+import { ServerCatalogue } from "@/domains/servers/ServerCatalogue";
 
-export default async function Page({ params }: PageProps) {
-
-    // const session = await getServerSession();
-    // if (!session) {
-    //     return }
-    
-    return <ServerCatalogue projectID={params.projectID} />
+export default function Page() {
+  return (
+    <Layout>
+      <ServerCatalogue projectID="" />
+    </Layout>
+  );
 }

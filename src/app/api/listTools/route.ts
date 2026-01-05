@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
+import { fetchWithMockFallback } from "@/lib/api/middleware";
 import response from "./response.json";
-import axios from "axios";
 
 // Define schema for incoming request payload
 const listToolsPayloadSchema = z.object({
@@ -14,27 +14,17 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const validatedPayload = listToolsPayloadSchema.parse(body);
     console.log("Validated Payload:", validatedPayload);
-    const env = process.env.NEXT_PUBLIC_APP_ENV;
 
-    console.log('ENV :', env);
-    console.log('BACKEND_URL :', process.env.BACKEND_URL);
-
-    // ✅ Use mock during local dev
-    if (env === "local") {
-      const data = response;
-      return NextResponse.json(data); // 👈 response.json content is returned
-    }
-    //const data = response
-    //return NextResponse.json(data);
-
-    const { data } = await axios.post(
-      `${process.env.BACKEND_URL}/api/listTools`,
-      validatedPayload,
-      { headers: { "Content-Type": "application/json" } }
+    const data = await fetchWithMockFallback(
+      {
+        method: "POST",
+        url: "/api/listTools",
+        data: validatedPayload,
+      },
+      response
     );
 
     return NextResponse.json(data);
-
   } catch (error) {
     if (error instanceof z.ZodError) {
       return NextResponse.json(
@@ -42,9 +32,8 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
-    return NextResponse.json(
-      { error: "Internal Server Error" },
-      { status: 500 }
-    );
+    // Return mock data as fallback for other errors
+    console.error("❌ Unexpected error, using mock data:", error);
+    return NextResponse.json(response);
   }
 }

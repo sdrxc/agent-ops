@@ -1,0 +1,119 @@
+{
+  "status": 200,
+  "message": "Trace fetched successfully",
+  "data": {
+    "id": "trc_1000",
+    "steps": [
+      {
+        "id": 1,
+        "agent": "System",
+        "name": "User Request",
+        "type": "trigger",
+        "duration": 0,
+        "status": "success",
+        "start": 0
+      },
+      {
+        "id": 2,
+        "agent": "Orchestrator",
+        "name": "Analyze Intent",
+        "type": "orchestration",
+        "duration": 450,
+        "status": "success",
+        "start": 50
+      },
+      {
+        "id": 3,
+        "agent": "Orchestrator",
+        "name": "Route -> Support Agent",
+        "type": "router",
+        "duration": 50,
+        "status": "success",
+        "start": 500
+      },
+      {
+        "id": 4,
+        "agent": "Support Agent",
+        "name": "Context Retrieval (Vector DB)",
+        "type": "retrieval",
+        "duration": 250,
+        "status": "success",
+        "start": 550
+      },
+      {
+        "id": 5,
+        "agent": "Support Agent",
+        "name": "Plan & Execute",
+        "type": "llm",
+        "duration": 1200,
+        "status": "success",
+        "start": 800
+      },
+      {
+        "id": 6,
+        "agent": "Support Agent",
+        "name": "Tool: Check Inventory",
+        "type": "tool",
+        "duration": 300,
+        "status": "error",
+        "start": 2000,
+        "errorMsg": "504 Gateway Time-out Upstream service 'inventory-api' failed to respond within 300ms.",
+        "toolExecution": {
+          "input": {
+            "sku": "ITEM-999",
+            "warehouse_id": "WH-US-EAST"
+          },
+          "error": "Error: 504 Gateway Time-out\nUpstream service 'inventory-api' failed to respond within 300ms.",
+          "metadata": {
+            "model": "gpt-4-turbo",
+            "cost": 0.0012,
+            "retries": "0/3"
+          }
+        }
+      },
+      {
+        "id": 7,
+        "agent": "Orchestrator",
+        "name": "Handle Failure (Fallback)",
+        "type": "orchestration",
+        "duration": 100,
+        "status": "success",
+        "start": 2350
+      },
+      {
+        "id": 8,
+        "agent": "Orchestrator",
+        "name": "Final Response Generation",
+        "type": "llm",
+        "duration": 600,
+        "status": "success",
+        "start": 2450
+      }
+    ],
+    "orchestrationContext": {
+      "routingDecision": "User intent classified as `refund_request`. Routing to specialized `Support Agent` with retrieval tools.",
+      "activeSubAgents": ["Support Agent"]
+    },
+    "executionContext": {
+      "systemPrompt": "You are a helpful customer support agent for Acme Corp.\nYour tone should be empathetic and concise.\nWhen handling refunds, always ask for the order ID first.\nWhen checking inventory, if the tool times out, return a polite error message instead of crashing.\nCurrent User Context: {{user_context}}\nHistory: {{chat_history}}",
+      "promptVersion": "v2.1",
+      "modelConfig": {
+        "model": "gpt-4-turbo",
+        "temperature": 0.7,
+        "maxTokens": 2048,
+        "topP": 0.95,
+        "frequencyPenalty": 0,
+        "presencePenalty": 0
+      },
+      "userInput": {
+        "sku": "ITEM-999",
+        "warehouse_id": "WH-US-EAST",
+        "action": "check_inventory"
+      },
+      "enabledTools": ["check_inventory", "process_refund", "lookup_order"],
+      "agentId": "agent-support-001",
+      "timestamp": "2024-01-15T10:30:00Z"
+    }
+  }
+}
+

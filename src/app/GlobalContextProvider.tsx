@@ -50,8 +50,8 @@ export const GlobalContextProvider = ({ children }: { children: React.ReactNode 
       // BYPASSING for the time being
       const userData: UserDetails = {
         userID: "usr-100000",
-        userName: "Test User",
-        userEmail: "user@test.com",
+        userName: "Bayer Test User",
+        userEmail: "testuser@bayer.com",
         userRole: "admin",
         sessionId: "session-id-0070-24242-4234", // fixed typo
         orgId: "bayer-01",

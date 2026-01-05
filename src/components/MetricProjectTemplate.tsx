@@ -12,6 +12,11 @@ interface MetricTemplateProps {
   projectID: string;
 }
 
+// MetricItem represents a row in metric tables with dynamic fields
+export interface MetricItem {
+  [key: string]: string | number | null | undefined;
+}
+
 export function MetricProjectTemplate({ tabId, projectID }: MetricTemplateProps) {
   const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState(false);
@@ -503,7 +508,7 @@ function MetricList({
   emptyMessage,
 }: {
   title: string;
-  items: any[];
+  items: MetricItem[];
   fields: string[];
   emptyMessage?: string;
 }) {

@@ -29,7 +29,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import ServerCreationDialogBox from "../AgentDeployment/components/steps/ServerCreationDialog";
+import ServerCreationDialogBox from "@/domains/deployment/components/steps/ServerCreationDialog";
 
 // ---------------- MOCK DATA ----------------
 type Server = {

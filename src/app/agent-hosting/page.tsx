@@ -1,4 +1,4 @@
-import { getServerSession } from "next-auth";
+import { getServerSession } from "@/lib/auth";
 import { AgentHosting } from "@/features/AgentHosting/AgentHosting";
 
 export default async function Page() {    

@@ -1,0 +1,74 @@
+{
+  "status": 200,
+  "message": "Deployments fetched successfully",
+  "data": {
+    "deployments": [
+      {
+        "id": "dep_1",
+        "name": "Customer Service Swarm",
+        "repo": "internal/support-swarm",
+        "type": "Swarm",
+        "environments": [
+          {
+            "name": "Staging",
+            "version": "v2.4.0-rc1",
+            "commit": "8a2b3c",
+            "status": "Healthy",
+            "lastUpdated": "10 mins ago",
+            "author": "Sarah J."
+          },
+          {
+            "name": "Production",
+            "version": "v2.3.0",
+            "commit": "7f1e2d",
+            "status": "Healthy",
+            "lastUpdated": "2 hours ago",
+            "author": "Mike T."
+          }
+        ]
+      },
+      {
+        "id": "dep_2",
+        "name": "Refund Processor",
+        "repo": "internal/refund-bot",
+        "type": "Single",
+        "environments": [
+          {
+            "name": "Staging",
+            "version": "v1.2.0-beta",
+            "commit": "9f8e7d",
+            "status": "Healthy",
+            "lastUpdated": "1 hour ago",
+            "author": "Mike T."
+          },
+          {
+            "name": "Production",
+            "version": "v1.1.5",
+            "commit": "6e5d4c",
+            "status": "Warning",
+            "lastUpdated": "3 days ago",
+            "author": "Sarah J.",
+            "warning": "High error rate detected"
+          }
+        ]
+      },
+      {
+        "id": "dep_3",
+        "name": "Sales Closer",
+        "repo": "internal/sales-bot",
+        "type": "Single",
+        "environments": [
+          {
+            "name": "Staging",
+            "version": "v0.9.5",
+            "commit": "5a4b3c",
+            "status": "Deploying",
+            "lastUpdated": "Just now",
+            "author": "Sarah J."
+          }
+        ]
+      }
+    ]
+  }
+}
+

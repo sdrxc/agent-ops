@@ -1,6 +1,5 @@
-import { getServerSession } from "next-auth";
-import {IncidentReporting} from "@/features/IncidentReporting/IncidentReporting";
+import { redirect } from "next/navigation";
 
-export default async function Page() {    
-    return <IncidentReporting />
+export default function Page() {
+  redirect("/incidents");
 }

@@ -3,7 +3,6 @@
 import { useState, useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { AgentCard } from "@/components/cards/AgentCard";
-import { AgentDetailModal } from "@/components/AgentDetailModal";
 import { Layout } from "@/components/Layout";
 import { KPIDashboard } from "@/components/KPIDashboard";
 import { Button } from "@/components/ui/button";
@@ -24,7 +23,7 @@ const mockAgents: Agent[] = [
     name: "Customer Support Bot",
     description:
       "Intelligent customer service assistant that handles common inquiries and escalates complex issues to human agents.",
-    status: "active",
+    environment: "production",
     version: "v2.1.3",
     model: "GPT-4",
     lastActivity: "2 minutes ago",
@@ -44,15 +43,17 @@ const mockAgents: Agent[] = [
       total: 2140000,
     },
     tags: ["Customer Service", "NLP", "Support"],
-    agentAPI: "http://k8s-project1-project1-1d8c4ed009-587900353.us-east-1.elb.amazonaws.com/agent-10052/",
-    agentdeploymenttype: "deployed"
+    agentAPI:
+      "http://k8s-project1-project1-1d8c4ed009-587900353.us-east-1.elb.amazonaws.com/agent-10052/",
+    agentdeploymenttype: "deployed",
+    visibility: "private",
   },
   {
     id: "2",
     name: "Content Generator",
     description:
       "Creative AI that generates high-quality marketing content, blog posts, and social media content.",
-    status: "active",
+    environment: "production",
     version: "v1.8.2",
     model: "GPT-4",
     lastActivity: "5 minutes ago",
@@ -72,15 +73,17 @@ const mockAgents: Agent[] = [
       total: 2320000,
     },
     tags: ["Content", "Marketing", "Creative"],
-    agentAPI: "http://k8s-project1-project1-1d8c4ed009-587900353.us-east-1.elb.amazonaws.com/agent-10052/",
-    agentdeploymenttype: "deployed"
+    agentAPI:
+      "http://k8s-project1-project1-1d8c4ed009-587900353.us-east-1.elb.amazonaws.com/agent-10052/",
+    agentdeploymenttype: "deployed",
+    visibility: "private",
   },
   {
     id: "3",
     name: "Code Review Assistant",
     description:
       "Automated code review agent that analyzes pull requests and provides suggestions for improvements.",
-    status: "training",
+    environment: "development",
     version: "v0.9.1-beta",
     model: "CodeLlama",
     lastActivity: "30 minutes ago",
@@ -100,15 +103,17 @@ const mockAgents: Agent[] = [
       total: 2880000,
     },
     tags: ["Development", "Code Review", "Quality"],
-    agentAPI: "http://k8s-project1-project1-1d8c4ed009-587900353.us-east-1.elb.amazonaws.com/agent-10052/",
-    agentdeploymenttype: "deployed"
+    agentAPI:
+      "http://k8s-project1-project1-1d8c4ed009-587900353.us-east-1.elb.amazonaws.com/agent-10052/",
+    agentdeploymenttype: "deployed",
+    visibility: "private",
   },
   {
     id: "4",
     name: "Data Analyst",
     description:
       "Advanced analytics agent that processes large datasets and generates insights and reports.",
-    status: "active",
+    environment: "production",
     version: "v3.0.1",
     model: "GPT-4",
     lastActivity: "1 hour ago",
@@ -128,15 +133,17 @@ const mockAgents: Agent[] = [
       total: 5000000,
     },
     tags: ["Analytics", "Data Science", "Reports"],
-    agentAPI: "http://k8s-project1-project1-1d8c4ed009-587900353.us-east-1.elb.amazonaws.com/agent-10052/",
-    agentdeploymenttype: "deployed"
+    agentAPI:
+      "http://k8s-project1-project1-1d8c4ed009-587900353.us-east-1.elb.amazonaws.com/agent-10052/",
+    agentdeploymenttype: "deployed",
+    visibility: "private",
   },
   {
     id: "5",
     name: "Translation Service",
     description:
       "Multi-language translation agent supporting 50+ languages with context-aware translations.",
-    status: "error",
+    environment: "staging",
     version: "v2.3.0",
     model: "mT5",
     lastActivity: "2 hours ago",
@@ -156,15 +163,17 @@ const mockAgents: Agent[] = [
       total: 3500000,
     },
     tags: ["Translation", "Multilingual", "Communication"],
-    agentAPI: "http://k8s-project1-project1-1d8c4ed009-587900353.us-east-1.elb.amazonaws.com/agent-10052/",
-    agentdeploymenttype: "deployed"
+    agentAPI:
+      "http://k8s-project1-project1-1d8c4ed009-587900353.us-east-1.elb.amazonaws.com/agent-10052/",
+    agentdeploymenttype: "deployed",
+    visibility: "private",
   },
   {
     id: "6",
     name: "Sales Assistant",
     description:
       "AI-powered sales agent that qualifies leads, schedules meetings, and follows up with prospects.",
-    status: "testing",
+    environment: "development",
     version: "v1.5.4",
     model: "GPT-4",
     lastActivity: "15 minutes ago",
@@ -184,24 +193,36 @@ const mockAgents: Agent[] = [
       total: 2100000,
     },
     tags: ["Sales", "Lead Generation", "CRM"],
-    agentAPI: "http://k8s-project1-project1-1d8c4ed009-587900353.us-east-1.elb.amazonaws.com/agent-10052/",
-    agentdeploymenttype: "deployed"
+    agentAPI:
+      "http://k8s-project1-project1-1d8c4ed009-587900353.us-east-1.elb.amazonaws.com/agent-10052/",
+    agentdeploymenttype: "deployed",
+    visibility: "private",
   },
 ];
 
 const mockMetrics: DashboardMetrics = {
   totalAgents: mockAgents.length,
-  activeAgents: mockAgents.filter((agent) => agent.status === "active").length,
+  activeAgents: mockAgents.filter((agent) => agent.environment === "production")
+    .length,
   averagePerformance:
-    mockAgents.reduce((sum, agent) => sum + (agent.performance?.successRate || 0), 0) /
-    mockAgents.length,
-  totalTests: mockAgents.reduce((sum, agent) => sum + (agent.sessions?.total || 0), 0),
+    mockAgents.reduce(
+      (sum, agent) => sum + (agent.performance?.successRate || 0),
+      0
+    ) / mockAgents.length,
+  totalTests: mockAgents.reduce(
+    (sum, agent) => sum + (agent.sessions?.total || 0),
+    0
+  ),
   successRate:
-    mockAgents.reduce((sum, agent) => sum + (agent.performance?.successRate || 0), 0) /
-    mockAgents.length,
+    mockAgents.reduce(
+      (sum, agent) => sum + (agent.performance?.successRate || 0),
+      0
+    ) / mockAgents.length,
   averageResponseTime:
-    mockAgents.reduce((sum, agent) => sum + (agent.performance?.responseTime || 0), 0) /
-    mockAgents.length,
+    mockAgents.reduce(
+      (sum, agent) => sum + (agent.performance?.responseTime || 0),
+      0
+    ) / mockAgents.length,
 };
 
 interface AgentHubProps {}
@@ -209,12 +230,13 @@ interface AgentHubProps {}
 function AgentHub({}: AgentHubProps) {
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState("");
-  const [sortConfig, setSortConfig] = useState<{field: string; direction: 'asc' | 'desc'}>({
-    field: 'name',
-    direction: 'asc'
+  const [sortConfig, setSortConfig] = useState<{
+    field: string;
+    direction: "asc" | "desc";
+  }>({
+    field: "name",
+    direction: "asc",
   });
-  const [selectedAgent, setSelectedAgent] = useState<Agent | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Use static data instead of API calls
   const agents = mockAgents;
@@ -237,16 +259,24 @@ function AgentHub({}: AgentHubProps) {
     }
 
     // Apply sorting with direction
-    const multiplier = sortConfig.direction === 'asc' ? 1 : -1;
-    
+    const multiplier = sortConfig.direction === "asc" ? 1 : -1;
+
     return filtered.sort((a, b) => {
       switch (sortConfig.field) {
         case "name":
           return multiplier * a.name.localeCompare(b.name);
         case "performance":
-          return multiplier * ((b.performance?.successRate || 0) - (a.performance?.successRate || 0));
+          return (
+            multiplier *
+            ((b.performance?.successRate || 0) -
+              (a.performance?.successRate || 0))
+          );
         case "cost":
-          return multiplier * ((a.sessions?.costPerSession || 0) - (b.sessions?.costPerSession || 0));
+          return (
+            multiplier *
+            ((a.sessions?.costPerSession || 0) -
+              (b.sessions?.costPerSession || 0))
+          );
         default:
           return 0;
       }
@@ -258,12 +288,7 @@ function AgentHub({}: AgentHubProps) {
   };
 
   const handleConfigureAgent = (agentId: string) => {
-    // Demo mode - show modal instead
-    const agent = agents.find((a) => a.id === agentId);
-    if (agent) {
-      setSelectedAgent(agent);
-      setIsModalOpen(true);
-    }
+    router.push(`/agents/${agentId}`);
   };
 
   const handleStartAgent = (agentId: string) => {
@@ -277,13 +302,7 @@ function AgentHub({}: AgentHubProps) {
   };
 
   const handleCardClick = (agent: Agent) => {
-    setSelectedAgent(agent);
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setSelectedAgent(null);
+    router.push(`/agents/${agent.id}`);
   };
 
   // No loading states needed since we're using static data
@@ -312,13 +331,15 @@ function AgentHub({}: AgentHubProps) {
               />
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
             </div>
-            
-            <Select 
-              value={sortConfig.field} 
-              onValueChange={(value) => setSortConfig(prev => ({ 
-                field: value, 
-                direction: prev.direction 
-              }))}
+
+            <Select
+              value={sortConfig.field}
+              onValueChange={(value) =>
+                setSortConfig((prev) => ({
+                  field: value,
+                  direction: prev.direction,
+                }))
+              }
             >
               <SelectTrigger className="w-[140px] h-9">
                 <SortAsc className="h-4 w-4 mr-2" />
@@ -331,15 +352,17 @@ function AgentHub({}: AgentHubProps) {
               </SelectContent>
             </Select>
 
-            <Button 
-              variant="outline" 
+            <Button
+              variant="outline"
               size="sm"
-              onClick={() => setSortConfig(prev => ({ 
-                ...prev, 
-                direction: prev.direction === 'asc' ? 'desc' : 'asc' 
-              }))}
+              onClick={() =>
+                setSortConfig((prev) => ({
+                  ...prev,
+                  direction: prev.direction === "asc" ? "desc" : "asc",
+                }))
+              }
             >
-              {sortConfig.direction === 'asc' ? '↑' : '↓'}
+              {sortConfig.direction === "asc" ? "↑" : "↓"}
             </Button>
           </div>
         </div>
@@ -377,13 +400,6 @@ function AgentHub({}: AgentHubProps) {
           </div>
         )}
       </div>
-
-      {/* Agent Detail Modal */}
-      <AgentDetailModal
-        agent={selectedAgent}
-        isOpen={isModalOpen}
-        onClose={closeModal}
-      />
     </>
   );
 }

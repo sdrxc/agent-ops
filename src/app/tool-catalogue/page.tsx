@@ -1,11 +1,12 @@
-import { getServerSession } from "next-auth";
-import { ToolCatalogue } from "@/features/ToolCatalogue/ToolCatalogue";
+"use client";
 
-export default async function Page() {
+import { Layout } from "@/components/Layout";
+import { ToolCatalogue } from "@/domains/tools/ToolCatalogue";
 
-    // const session = await getServerSession();
-    // if (!session) {
-    //     return }
-    
-    return <ToolCatalogue />
+export default function Page() {
+  return (
+    <Layout>
+      <ToolCatalogue />
+    </Layout>
+  );
 }

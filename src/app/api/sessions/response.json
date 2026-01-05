@@ -1,0 +1,8 @@
+{
+  "status": 200,
+  "message": "Sessions fetched successfully",
+  "data": {
+    "sessions": []
+  }
+}
+

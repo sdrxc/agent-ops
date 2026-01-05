@@ -1,7 +1,7 @@
 "use client";
 
 import { Layout } from "@/components/Layout";
-import { PageHeader } from "@/components/page-sections";
+import { PageHeader } from "@/components/PageHeader";
 
 export const UserGuide = () => {
   return (

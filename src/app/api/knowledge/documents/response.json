@@ -1,0 +1,110 @@
+{
+  "status": 200,
+  "message": "Documents fetched successfully",
+  "data": {
+    "documents": [
+      {
+        "id": "kb_1",
+        "name": "API_Reference_Guide.pdf",
+        "type": "pdf",
+        "status": "Ready",
+        "size": "2.4 MB",
+        "updatedAt": "2024-01-20T14:22:00Z",
+        "chunks": 342,
+        "tags": ["api", "reference"],
+        "collectionId": "col_1",
+        "mcpEndpoints": ["mcp://docs.internal/v1"],
+        "tools": [
+          {
+            "name": "get_spec",
+            "description": "Retrieve product specification by ID",
+            "usage": "get_spec('product_id')"
+          }
+        ]
+      },
+      {
+        "id": "kb_2",
+        "name": "User_Manual_v2.1.pdf",
+        "type": "pdf",
+        "status": "Ready",
+        "size": "5.8 MB",
+        "updatedAt": "2024-01-19T10:15:00Z",
+        "chunks": 521,
+        "tags": ["manual", "user-guide"],
+        "collectionId": "col_1",
+        "mcpEndpoints": ["mcp://docs.internal/v1"],
+        "tools": [
+          {
+            "name": "search_docs",
+            "description": "Search documentation by keywords",
+            "usage": "search_docs('keywords')"
+          }
+        ]
+      },
+      {
+        "id": "kb_3",
+        "name": "https://example.com/research-paper",
+        "type": "url",
+        "status": "Ready",
+        "updatedAt": "2024-01-18T11:45:00Z",
+        "chunks": 128,
+        "tags": ["research", "web"],
+        "collectionId": "col_2",
+        "mcpEndpoints": ["mcp://research.db/query"],
+        "tools": [
+          {
+            "name": "search_papers",
+            "description": "Search research papers by keywords",
+            "usage": "search_papers('keywords')"
+          }
+        ]
+      },
+      {
+        "id": "kb_4",
+        "name": "Machine_Learning_Basics.pdf",
+        "type": "pdf",
+        "status": "Indexing",
+        "size": "8.2 MB",
+        "updatedAt": "2024-01-20T15:00:00Z",
+        "chunks": 0,
+        "tags": ["ml", "tutorial"],
+        "collectionId": "col_2",
+        "mcpEndpoints": ["mcp://research.db/query"]
+      },
+      {
+        "id": "kb_5",
+        "name": "Employee_Handbook_2024.pdf",
+        "type": "pdf",
+        "status": "Ready",
+        "size": "3.1 MB",
+        "updatedAt": "2024-01-12T16:30:00Z",
+        "chunks": 189,
+        "tags": ["handbook", "hr"],
+        "collectionId": "col_3",
+        "mcpEndpoints": ["mcp://policy.hr/check"],
+        "tools": [
+          {
+            "name": "check_policy",
+            "description": "Check policy compliance by policy ID",
+            "usage": "check_policy('policy_id')"
+          }
+        ]
+      }
+    ]
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

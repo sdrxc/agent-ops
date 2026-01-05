@@ -4,69 +4,101 @@
     "data": {
         "agents": [
             {
-                "id": "agent-10052",
-                "name": "Authoring agent",
-                "description": "Authoring agent",
-                "status": "active",
-                "version": "1.0.0",
-                "model": null,
-                "tags": [],
+                "id": "agent-10050",
+                "name": "Medical Research Assistant",
+                "description": "AI-powered assistant for medical research literature analysis",
+                "environment": "production",
+                "version": "v1.2.0",
+                "model": "gpt-4",
+                "tags": ["medical", "research", "nlp"],
                 "lastactivity": "2025-11-05T06:21:09.149410",
-                "lastActivity": "14 hours ago",
-                "agentAPI": "",
-                "agentdeploymenttype": "registered"
+                "lastActivity": "1 hour ago",
+                "agentAPI": "https://api.medresearch.bayer.com/v1/agent",
+                "agentdeploymenttype": "deployed",
+                "agentURL": {
+                    "apiEndpoint": "https://api.medresearch.bayer.com/v1/agent",
+                    "swaggerDocs": "https://api.medresearch.bayer.com/docs"
+                },
+                "provider": {
+                    "name": "Bayer AI Labs",
+                    "githubURL": "https://github.com/bayer/medical-research-agent",
+                    "organization": "Bayer AG"
+                },
+                "beatID": "BYR-2024-001",
+                "visibility": "private"
+            },
+            {
+                "id": "agent-10051",
+                "name": "Content Summarizer",
+                "description": "Automatically summarizes bookmarked articles and web pages",
+                "environment": "staging",
+                "version": "v2.0.1",
+                "model": "gpt-4",
+                "tags": ["summarization", "content", "nlp"],
+                "lastactivity": "2025-11-05T06:50:07.843451",
+                "lastActivity": "30 minutes ago",
+                "agentAPI": "https://api.bookmarks.example.com/summarize",
+                "agentdeploymenttype": "deployed",
+                "agentURL": {
+                    "apiEndpoint": "https://api.bookmarks.example.com/summarize"
+                },
+                "provider": {
+                    "name": "Data Team",
+                    "organization": "Bayer Digital"
+                },
+                "visibility": "public"
+            },
+            {
+                "id": "agent-10052",
+                "name": "Trading Analytics Agent",
+                "description": "Real-time market analysis and trading recommendations",
+                "environment": "production",
+                "version": "v2.1.0",
+                "model": "gpt-4",
+                "tags": ["trading", "analytics", "real-time"],
+                "lastactivity": "2025-11-05T06:59:02.874989",
+                "lastActivity": "2 hours ago",
+                "agentAPI": "https://api.trading.bayer.com/v1",
+                "agentdeploymenttype": "deployed",
+                "agentURL": {
+                    "apiEndpoint": "https://api.trading.bayer.com/v1",
+                    "swaggerDocs": "https://api.trading.bayer.com/swagger"
+                },
+                "provider": {
+                    "name": "Finance Team",
+                    "githubURL": "https://github.com/bayer/trading-agents",
+                    "organization": "Bayer Finance"
+                },
+                "beatID": "BYR-2024-075",
+                "visibility": "private"
+            },
+            {
+                "id": "agent-10056",
+                "name": "Topic Clustering Agent",
+                "description": "Groups bookmarks by topic using semantic similarity",
+                "environment": "development",
+                "version": "v1.8.0",
+                "model": "claude-3-sonnet",
+                "tags": ["clustering", "ml", "categorization"],
+                "lastactivity": "2025-11-05T07:15:00.000000",
+                "lastActivity": "45 minutes ago",
+                "agentAPI": "https://api.bookmarks.example.com/cluster",
+                "agentdeploymenttype": "deployed",
+                "visibility": "private"
             },
             {
                 "id": "agent-10053",
-                "name": "Validator agent",
-                "description": "Validator agent",
-                "status": "inactive",
-                "version": "1.0.0",
-                "model": null,
-                "tags": [],
-                "lastactivity": "2025-11-05T06:50:07.843451",
-                "lastActivity": "14 hours ago",
-                "agentAPI": "",
-                "agentdeploymenttype": "registered"
-            },
-            {
-                "id": "agent-10054",
-                "name": "Clarification Agent",
-                "description": "Clarification Agent",
-                "status": "active",
-                "version": "1.0.0",
-                "model": null,
-                "tags": [],
-                "lastactivity": "2025-11-05T06:59:02.874989",
-                "lastActivity": "13 hours ago",
-                "agentAPI": "http://k8s-project1-project1-1d8c4ed009-587900353.us-east-1.elb.amazonaws.com/agent-10054/",
-                "agentdeploymenttype": "deployed"
-            },
-                        {
-                "id": "agent-10065",
-                "name": "Orchestractor agent",
-                "description": "Orchestractor agent",
-                "status": "active",
-                "version": "1.0.0",
-                "model": null,
-                "tags": [],
-                "lastactivity": "2025-11-05T06:21:09.149410",
-                "lastActivity": "14 hours ago",
-                "agentAPI": "",
-                "agentdeploymenttype": "registered"
-            },
-                        {
-                "id": "agent-10043",
-                "name": "Guardrails agent",
-                "description": "Guardrails agent",
-                "status": "active",
-                "version": "1.0.0",
-                "model": null,
-                "tags": [],
-                "lastactivity": "2025-11-05T06:21:09.149410",
-                "lastActivity": "14 hours ago",
-                "agentAPI": "http://k8s-project1-project1-1d8c4ed009-587900353.us-east-1.elb.amazonaws.com/agent-10054/",
-                "agentdeploymenttype": "deployed"
+                "name": "Risk Assessment Agent",
+                "description": "Automated risk analysis and portfolio monitoring",
+                "environment": "staging",
+                "version": "v1.5.2",
+                "model": "claude-3-sonnet",
+                "tags": ["risk", "compliance", "monitoring"],
+                "lastactivity": "2025-11-05T08:00:00.000000",
+                "lastActivity": "1 hour ago",
+                "agentAPI": "https://api.trading.example.com/risk",
+                "agentdeploymenttype": "deployed",
+                "visibility": "private"
             }
         ]
     }

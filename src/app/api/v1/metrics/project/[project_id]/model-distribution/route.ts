@@ -1,38 +1,27 @@
 import { NextRequest, NextResponse } from "next/server";
-import axios from "axios";
+import { fetchWithMockFallback } from "@/lib/api/middleware";
 import response from "./response.json";
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { agent: string } }
+  { params }: { params: Promise<{ project_id: string }> }
 ) {
   try {
-    const agentID = params.agent;
-    const env = process.env.NEXT_PUBLIC_APP_ENV;
+    const resolvedParams = await params;
+    const projectID = resolvedParams.project_id;
+    console.log("🌐 GET metrics for project:", projectID);
 
-    console.log("🌐 GET metrics for agent:", agentID);
-    console.log("ENV:", env);
-    console.log("BACKEND_URL:", process.env.BACKEND_URL);
-
-    // ✅ Local mock response
-    if (env === "local") {
-      return NextResponse.json(response);
-    }
-
-    // ✅ Real backend call in non-local env
-    const { data } = await axios.get(
-      `${process.env.BACKEND_URL}/api/v1/metrics/agent/${agentID}/model-distribution`,
+    const data = await fetchWithMockFallback(
       {
-        headers: { "Content-Type": "application/json" },
-      }
+        method: "GET",
+        url: `/api/v1/metrics/project/${projectID}/model-distribution`,
+      },
+      response
     );
 
     return NextResponse.json(data);
   } catch (error) {
     console.error("❌ Metric API GET Error:", error);
-    return NextResponse.json(
-      { error: "Failed to fetch metrics" },
-      { status: 500 }
-    );
+    return NextResponse.json(response);
   }
 }

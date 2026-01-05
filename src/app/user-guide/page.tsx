@@ -1,4 +1,4 @@
-import { getServerSession } from "next-auth";
+import { getServerSession } from "@/lib/auth";
 import { UserGuide } from "@/features/UserGuide/UserGuide";
 
 export default async function Page() {

@@ -1,0 +1,8 @@
+{
+  "status": 200,
+  "message": "Logs fetched successfully",
+  "data": {
+    "logs": []
+  }
+}
+

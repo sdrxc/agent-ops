@@ -62,6 +62,19 @@ interface PromptVersion {
   environment: "dev" | "staging" | "production";
 }
 
+interface PlaygroundResult {
+  id: string;
+  timestamp: string;
+  model: string;
+  prompt: string;
+  response: string;
+  metrics: {
+    responseTime: number;
+    tokens: number;
+    cost: number;
+  };
+}
+
 const modelProviders: ModelProvider[] = [
   {
     id: "openai",
@@ -137,7 +150,7 @@ export function PromptPlaygroundTab({ agent }: PromptPlaygroundTabProps) {
     },
   ]);
   const [isRunning, setIsRunning] = useState(false);
-  const [results, setResults] = useState<any[]>([]);
+  const [results, setResults] = useState<PlaygroundResult[]>([]);
   const [compareMode, setCompareMode] = useState(false);
 
   const currentProvider = modelProviders.find((p) => p.id === selectedProvider);
